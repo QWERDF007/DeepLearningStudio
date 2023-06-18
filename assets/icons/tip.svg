@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16.26923"
+   height="24.653851"
+   viewBox="0 0 16.26923 24.653851"
+   version="1.1"
+   id="svg776"
+   sodipodi:docname="tip.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <metadata
+     id="metadata782">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>lightbulb_on icon</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs780" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview778"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="30.906458"
+     inkscape:cx="5.1270593"
+     inkscape:cy="8.916489"
+     inkscape:current-layer="g774" />
+  <style
+     type="text/css"
+     id="style766">
+	.st0{fill:#7D7D7D;stroke:#000000;stroke-width:0.2;stroke-miterlimit:10;}
+	.st1{fill:#FFE366;stroke:#000000;stroke-width:0.2;stroke-miterlimit:10;}
+</style>
+  <title
+     id="title768">lightbulb_on icon</title>
+  <desc
+     id="desc770">lightbulb_on icon from the IconExperience.com O-Collection. Copyright by INCORS GmbH (www.incors.com).</desc>
+  <g
+     style="opacity:1;fill:none"
+     transform="translate(-5.4230769,3.0769258)"
+     id="g774">
+    <path
+       style="opacity:1;fill:none;stroke:black;stroke-width:1.5;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
+       inkscape:connector-curvature="0"
+       d="m 17.25,14.867838 v 3.323076 c 0,0.861539 -0.615385,1.476924 -1.476923,1.476924 v 0 0 0 c 0,0.36923 -0.492308,0.738461 -1.107692,0.738461 H 12.45 c -0.615385,0 -1.107692,-0.369231 -1.107692,-0.738461 v 0 0 0 c -0.861539,0 -1.4769234,-0.615385 -1.4769234,-1.476924 v -3.323076 c 0.3692304,0.123076 0.6153844,0.123076 0.9846154,0.246153 0.861538,0.123077 1.846154,0.123077 2.707692,0.123077 0.861539,0 1.846154,0 2.707693,-0.123077 0.36923,0 0.615384,-0.123077 0.984615,-0.246153 z"
+       class="st0"
+       id="curve1" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;stroke:black;stroke-width:1.5;stroke-miterlimit:10;stroke-dasharray:none"
+       d="m 13.557692,-1.7475471 c 3.692308,0 7.384616,2.70769203 7.384616,6.646154 0,3.692307 -2.953846,5.1692311 -2.953846,7.3846151 v 0.738462 c 0,1.476923 -2.215385,1.476923 -4.43077,1.476923 -2.215384,0 -4.4307689,0 -4.4307689,-1.476923 v -0.738462 c 0,-2.215384 -2.9538462,-3.6923081 -2.9538462,-7.3846151 0,-3.93846197 3.5692308,-6.646154 7.3846151,-6.646154 z"
+       id="path850"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Layer_1"
+   data-name="Layer 1"
+   viewBox="0 0 16 16"
+   version="1.1"
+   sodipodi:docname="pie_chart.svg"
+   width="16"
+   height="16"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata509">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview507"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="43.5"
+     inkscape:cx="10"
+     inkscape:cy="10"
+     inkscape:current-layer="Layer_1" />
+  <defs
+     id="defs502">
+    <style
+       id="style500">.cls-1{fill:#000;}</style>
+  </defs>
+  <path
+     class="cls-1"
+     d="M 8,0 A 8,8 0 1 0 16,8 8,8 0 0 0 8,0 Z M 8.421053,7.5789474 V 0.8421053 a 7.1410526,7.1410526 0 0 1 6.736842,6.7368421 z M 7.5789474,15.157895 a 7.1578949,7.1578949 0 0 1 0,-14.3157897 z m 0.8421056,0 V 8.421053 h 6.736842 a 7.1410526,7.1410526 0 0 1 -6.736842,6.736842 z"
+     id="path504"
+     style="stroke-width:0.842105" />
+</svg>

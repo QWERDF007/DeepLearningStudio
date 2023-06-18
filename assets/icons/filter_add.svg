@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="20"
+   height="19.487329"
+   viewBox="0 0 20 19.487329"
+   version="1.1"
+   id="svg139"
+   sodipodi:docname="filter_add.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata145">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Light/DLT_Icons/Actions/Content/Create_custom_Filter</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs143" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview141"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="21.75"
+     inkscape:cx="6.1149425"
+     inkscape:cy="18.9998"
+     inkscape:current-layer="svg139" />
+  <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+  <title
+     id="title133">Light/DLT_Icons/Actions/Content/Create_custom_Filter</title>
+  <desc
+     id="desc135">Created with Sketch.</desc>
+  <g
+     id="Light/DLT_Icons/Actions/Content/Create_custom_Filter"
+     stroke="none"
+     stroke-width="1"
+     fill="none"
+     fill-rule="evenodd"
+     transform="matrix(0.51282446,0,0,0.51282446,-2.0512978,-2.5642249)">
+    <path
+       d="m 36,5.0002 v 7 l -12,15 v 12 l -8,4 v -16 l -12,-15 v -7 z m -3,3 H 7 v 2.947 l 11.342,14.179 0.658,0.821 v 12.198 l 2,-1 V 25.9472 L 21.657,25.1262 33,10.9472 Z m 4.0007,15 v 5.999 h 5.999 v 3.001 h -5.999 v 5.999 h -3.001 v -5.999 h -5.999 v -3.001 h 5.999 v -5.999 z"
+       id="Combined-Shape"
+       fill="black" />
+  </g>
+</svg>
