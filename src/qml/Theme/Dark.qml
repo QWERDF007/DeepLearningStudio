@@ -24,5 +24,5 @@ QtObject {
     readonly property color primaryColor: "#3D3D3D"
     readonly property color accentColor: "#353535"
     readonly property color highlightColor: "#009688"
-    readonly property color buttonColor: "#009688"
+    readonly property color buttonColor: "#646464"
 }
