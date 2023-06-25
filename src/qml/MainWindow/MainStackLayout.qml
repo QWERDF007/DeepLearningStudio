@@ -1,6 +1,7 @@
 import QtQuick.Layouts 1.14
 import QtQuick 2.14
 import QtQml 2.14
+import dl.studio.theme 1.0
 
 //主界面标签页内容
 StackLayout {
@@ -32,7 +33,7 @@ StackLayout {
                 if(component.status === Component.Ready)
                 {
                     var object  = component.createObject(container);
-                    object.color = modelData[1]
+                    object.color = Theme.backgroundColor
                     object.width = pageStackLayout.width
                 }else {
                     console.log("Component.errorString():", component.errorString())
