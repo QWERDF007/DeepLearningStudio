@@ -20,9 +20,21 @@ QtObject {
                                               })
 
 
-    readonly property color backgroundColor: "#303030"
-    readonly property color primaryColor: "#3D3D3D"
-    readonly property color accentColor: "#353535"
-    readonly property color highlightColor: "#009688"
-    readonly property color buttonColor: "#646464"
+    readonly property color background: "#303030"
+    readonly property color primary: "#3D3D3D"
+    readonly property color accent: "#353535"
+    readonly property color highlight: "#009688"
+    readonly property color projectDescription: "#009688"
+    readonly property color border: "#434343"
+    readonly property color button: "#646464"
+
+    readonly property QtObject tabButton: QtObject {
+        readonly property color background: "#303030"
+        readonly property color primary: "#484848"
+        readonly property color highlight: "#009688"
+        readonly property color down: "#6A6A6A"
+
+    }
+
+
 }
