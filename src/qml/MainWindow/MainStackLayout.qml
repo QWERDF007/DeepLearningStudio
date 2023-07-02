@@ -28,12 +28,11 @@ StackLayout {
             Component.onCompleted: {
                 console.log("加载tab页：", index, modelData[0], modelData[1], modelData[2])
                 var component = Qt.createComponent(modelData[2]);
-                console.log("component", component)
                 if(component === null) return
                 if(component.status === Component.Ready)
                 {
                     var object  = component.createObject(container);
-                    object.color = Theme.backgroundColor
+                    object.color = Theme.background
                     object.width = pageStackLayout.width
                 }else {
                     console.log("Component.errorString():", component.errorString())

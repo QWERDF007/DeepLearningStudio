@@ -9,10 +9,7 @@ ApplicationWindow  {
     width: Theme.width
     height: Theme.height
     visible: true
-    color: Theme.backgroundColor
-    //    background: {
-    //        color: Theme.Color.backgroundColor
-    //    }
+    color: Theme.background
 
 
     title: qsTr("MainWindow")
@@ -25,7 +22,7 @@ ApplicationWindow  {
     //标题栏
     header: MainHeader {
         id: mainHeader
-        height: 50
+        height: 48
     }
 
 
@@ -38,11 +35,11 @@ ApplicationWindow  {
     footer: Rectangle {
         height: 28
         width: parent.width
-        color: Theme.primaryColor
+        color: Theme.primary
     }
 
     Component.onCompleted: {
-        console.log("main complete.", Theme, Theme.backgroundColor)
+        console.log("main complete.", Theme, Theme.background)
     }
 }
 

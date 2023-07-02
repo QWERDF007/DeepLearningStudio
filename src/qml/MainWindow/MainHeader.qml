@@ -13,23 +13,19 @@ ToolBar {
     property alias currentItem: mainTabBar.currentItem
 
     background: Rectangle {
-        color: Theme.primaryColor
+        color: Theme.primary
     }
 
     RowLayout {
 
         anchors.fill: parent
-//        width: control.width
-//        height: control.height - control.margin
         ToolButton {
             id: toolBtn
             height: control.height
             Layout.alignment: Qt.AlignVCenter
-            action: Action {
-                icon.source: "/icons/menu"
-                icon.height: control.height
-                onTriggered: mainMenu.open()
-            }
+            icon.source: "/icons/menu"
+            onClicked: mainMenu.isOpened ? mainMenu.close() : mainMenu.open()
+
             MainMenu {
                 id: mainMenu
                 y: parent.height
@@ -41,8 +37,6 @@ ToolBar {
             id: mainTabBar
             Layout.alignment: Qt.AlignVCenter
             Layout.fillWidth: true
-//            height: control.height
-//            MainTabButton {text: "项目"; height:control.height; width: 80; anchors.centerIn: parent}
             Repeater {
                 id: rep
                 model: ["项目", "图库", "标注", "检查", "训练", "评估", "导出"]
@@ -50,19 +44,11 @@ ToolBar {
                 MainTabButton {
                     id: tbtn
                     width: 100
-                    height: control.height
+                    implicitHeight: control.height
                     anchors.verticalCenter: parent.verticalCenter
                     text: modelData
-                    textColor: mainTabBar.currentIndex === index ? Theme.highlightColor : "white"
-                    Component.onCompleted: {
-                        console.log("MainTabButton height", tbtn.height, mainHeader.height)
-                    }
+                    textColor: mainTabBar.currentIndex === index ? Theme.highlight : "white"
                 }
-
-            }
-            Component.onCompleted: {
-                mainTabBar.height = control.height
-                console.log("MainTabBar height", mainTabBar.height, mainHeader.height)
             }
         }
 
@@ -74,9 +60,7 @@ ToolBar {
             color: "black"
             border.color: "#80ffffff"
             border.width: 1
-            Component.onCompleted: {
-                console.log("MainHeader Rectangle height", control.height)
-            }
+
         }
 
         ToolSeparator {
@@ -88,16 +72,9 @@ ToolBar {
             height: control.height - control.margin
             Layout.alignment: Qt.AlignRight
             radius: 5
-            //                Layout.alignment: Qt.AlignRight
             color: "black"
             border.color: "#80ffffff"
             border.width: 1
-            Component.onCompleted: {
-                console.log("MainHeader Rectangle height", control.height)
-            }
         }
-    }
-    Component.onCompleted: {
-        console.log("MainHeader height", control.height)
     }
 }

@@ -9,11 +9,8 @@ TabBar {
     width: parent.width
 //    height: parent.height
     background: Rectangle {
-        color: Theme.primaryColor
+        color: Theme.primary
         height: control.height
-        Component.onCompleted: {
-            console.log("TabBar background height", control.height)
-        }
     }
 
     spacing: 1
@@ -33,10 +30,10 @@ TabBar {
         highlight: Rectangle {
             x: lv.currentItem.x
             z: 2
-            y: lv.height - height - 2
+            y: lv.height - height
             height: 2
             width: 100
-            color: Theme.highlightColor
+            color: Theme.highlight
             Behavior on x {
                 SmoothedAnimation {
                     duration: 300
@@ -45,11 +42,6 @@ TabBar {
             }
         }
     }
-
-    Component.onCompleted: {
-        console.log("TabBar height", control.height)
-    }
-
 }
 
 

@@ -1,35 +1,34 @@
 import QtQuick
 import QtQuick.Controls
+import dl.studio.theme 1.0
 
 TabButton {
     id: control
-    property alias textColor: btnText.color
-    text: "TabButton"
-    contentItem: Text {
-        id: btnText
+    property alias textColor: content.color
+    contentItem: IconLabel {
+        id: content
+        spacing: control.spacing
+        mirrored: control.mirrored
+        display: control.display
+
+        icon: control.icon
         text: control.text
         font: control.font
-        opacity: enabled ? 1.0 : 0.3
-        color: "white"
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        elide: Text.ElideRight
-        Component.onCompleted: {
-            console.log("text height", control.height)
-        }
+        color: control.palette.brightText
     }
 
     background: Rectangle {
+        id: bg
         implicitWidth: 100
         implicitHeight: control.height
         opacity: enabled ? 1 : 0.3
-        color: control.down ? "#6A6A6A" : "#3D3D3D"
+        color: control.down ? Theme.tabButton.down : Theme.primary
         radius: 2
-        Component.onCompleted: {
-            console.log("Rectangle height", control.height)
-        }
     }
-    Component.onCompleted: {
-        console.log("btn height", control.height)
+
+    states: State {
+        name: "hoverd"
+        when: control.hovered
+        PropertyChanges { bg.color: Theme.tabButton.down }
     }
 }
