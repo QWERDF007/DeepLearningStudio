@@ -5,25 +5,19 @@ import dl.studio.theme 1.0
 
 Rectangle{
     anchors.fill: parent
-    color: Theme.backgroundColor
+    color: Theme.background
     SplitView {
         anchors.fill: parent
         anchors.margins: 10
         orientation: Qt.Horizontal
 
-        TrainingLeftPane {
-
+        TrainingLeftPanel {
+            SplitView.minimumWidth: 220
+            SplitView.maximumWidth: 400
         }
 
-        Rectangle {
-            id: centerItem
-            anchors.margins: 10
+        TrainingCenterPanel {
             SplitView.fillWidth: true
-            color: Theme.backgroundColor
-            Label {
-                text: "View 2"
-                anchors.centerIn: parent
-            }
         }
 
         Component.onCompleted:  {
