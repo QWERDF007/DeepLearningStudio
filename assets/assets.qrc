@@ -1,5 +1,22 @@
 <RCC>
     <qresource prefix="/icons">
         <file alias="menu">icons/menu.svg</file>
+        <file alias="delete">icons/delete.svg</file>
+        <file alias="image">icons/image.svg</file>
+        <file alias="add_image">icons/add_image.svg</file>
+        <file alias="add">icons/add.svg</file>
+        <file alias="add_folder">icons/add_folder.svg</file>
+        <file alias="edit">icons/edit.svg</file>
+        <file alias="expand">icons/expand.svg</file>
+        <file alias="collaps">icons/collaps.svg</file>
+        <file alias="detection">icons/detection.svg</file>
+        <file alias="note">icons/note.svg</file>
+        <file alias="pause">icons/pause.svg</file>
+        <file alias="play">icons/play.svg</file>
+        <file alias="setting">icons/settings.svg</file>
+        <file alias="settings_tab">icons/settings_tab.svg</file>
+        <file alias="reset">icons/reset.svg</file>
+        <file alias="results">icons/results.svg</file>
+        <file alias="object">icons/object.png</file>
     </qresource>
 </RCC>
