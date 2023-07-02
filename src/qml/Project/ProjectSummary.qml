@@ -39,9 +39,12 @@ Rectangle {
 
             ToolButton {
                 visible: control.editable
-                implicitWidth: 32
-                implicitHeight: 32
+                implicitWidth: 30
+                implicitHeight: 30
                 icon.source: "/icons/edit"
+                ToolTip.visible: hovered
+                ToolTip.delay: 500
+                ToolTip.text: qsTr("编辑项目名称")
                 Layout.alignment: Qt.AlignTop | Qt.AlignRight
                 Layout.topMargin: 5
                 Layout.rightMargin: 5
@@ -92,9 +95,9 @@ Rectangle {
 
             ToolButton {
                 visible: control.editable
-                implicitWidth: 32
-                implicitHeight: 32
-                text: qsTr("⋮")
+                implicitWidth: 30
+                implicitHeight: 30
+                icon.source: "/icons/kebab"
                 Layout.alignment: Qt.AlignRight | Qt.AlignTop
                 Layout.rightMargin: 5
                 Layout.bottomMargin: 5

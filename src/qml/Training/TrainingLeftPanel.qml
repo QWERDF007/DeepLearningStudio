@@ -12,7 +12,7 @@ Item {
     ColumnLayout {
         anchors.fill: parent
 
-        ProjectDescriptionPanel {
+        ProjectSummary {
             Layout.fillWidth: true
 //            Layout.fillHeight: true
             editable: false

@@ -73,6 +73,9 @@ ColumnLayout {
 
     ListView {
         id: modelListView
+//        Flickable
+        orientation: ListView.Vertical
+        boundsBehavior: Flickable.StopAtBounds
         Layout.fillWidth: true
         Layout.fillHeight: true
 
