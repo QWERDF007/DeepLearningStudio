@@ -18,5 +18,8 @@
         <file alias="reset">icons/reset.svg</file>
         <file alias="results">icons/results.svg</file>
         <file alias="object">icons/object.png</file>
+        <file alias="kebab">icons/kebab.svg</file>
+        <file alias="file">icons/file.svg</file>
+        <file alias="folder">icons/folder.svg</file>
     </qresource>
 </RCC>
