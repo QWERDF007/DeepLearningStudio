@@ -21,11 +21,12 @@ Rectangle {
     ColumnLayout {
         anchors.fill: parent
         ScrollView {
+            id: scrollview
             clip: true
             Layout.fillHeight: true
             Layout.fillWidth: true
             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-            ScrollBar.vertical.policy: ScrollBar.AsNeeded
+            ScrollBar.vertical.policy: scrollview.contentHeight > scrollview.height ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
             ScrollBar.vertical.width: 8
             contentWidth: availableWidth
 
