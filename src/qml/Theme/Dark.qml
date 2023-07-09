@@ -33,7 +33,6 @@ QtObject {
         readonly property color primary: "#484848"
         readonly property color highlight: "#009688"
         readonly property color down: "#6A6A6A"
-
     }
 
 
