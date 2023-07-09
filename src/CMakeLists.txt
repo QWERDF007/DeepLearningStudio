@@ -5,8 +5,6 @@ source_group("QML Files" FILES ${QML_SOURCES} "qtquickcontrols2.conf")
 
 file(GLOB_RECURSE THEME_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} qml/Theme/*.qml)
 
-message(STATUS "${QML_SOURCES}")
-
 set(SOURCES main.cpp)
 
 qt_add_big_resources(QRC_SOURCES ../assets/assets.qrc)
