@@ -2,116 +2,103 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
+import "../Components"
+
 import dl.studio.theme 1.0
 
 Item {
+    id: root
     width: 400
     height: 600
-
-//    ScrollView {
-//        id: scroll
-//        anchors.fill: parent
-//        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-//        ScrollBar.vertical.policy: ScrollBar.AsNeeded
-//        ScrollBar.vertical.width: 8
-//        ScrollBar.vertical.active: true
-//        contentWidth: availableWidth
-
-//        ColumnLayout {
-//            width: scroll.availableWidth
-////            height: gv1.height + gv2.height
-
-//            GridView {
-//                id: gv1
-////                Layout.fillWidth: true
-//                width: scroll.availableWidth
-//                height: contentHeight
-////                Layout.fillHeight: true
-////                height: 500
-//                cellHeight: 120
-//                cellWidth: 120
-//                model: 150
-//                delegate: Column {
-//                    Rectangle {
-//                        width: 100
-//                        height: 100
-//                        color: "blue"
-//                    }
-
-//                    Label {
-//                        text: index
-//                    }
-//                }
-//            }
-
-//            GridView {
-//                id: gv2
-//                Layout.fillWidth: true
-////                height: contentHeight
-////                height: 500
-//                cellHeight: 120
-//                cellWidth: 120
-//                model: 150
-//                delegate: Column {
-//                    Rectangle {
-//                        width: 100
-//                        height: 100
-//                        color: "blue"
-//                    }
-
-//                    Label {
-//                        text: index
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-
-
-    ListView {
-        id: listView
-        anchors.leftMargin: 10
-        orientation: ListView.Vertical
-        boundsBehavior: Flickable.StopAtBounds
+    Expander {
         anchors.fill: parent
-
-        ScrollBar.vertical: ScrollBar {
-            id: scrollbar
-            policy: listView.contentHeight > listView.height ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
-            width: 8
-        }
-
-        model: 2
-
-        delegate: GridView {
-            id: gv
-            property int gvindex: index
-            width: parent.width
-            height: contentHeight
-            cellHeight: 120
-            cellWidth: 120
+        anchors.leftMargin: 10
+        headerText: "最近的项目:"
+        content: GridView {
+            id: gridView
+            anchors.fill: parent
+            boundsBehavior: Flickable.StopAtBounds
+            ScrollBar.vertical: ScrollBar {
+                id: scrollBar
+                policy: gridView.contentHeight > gridView.height ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
+                width: 8
+            }
+            clip: true
+            cacheBuffer: cellHeight * 2
+            cellHeight: 200
+            cellWidth: 200
             model: 100
-            delegate: Column {
-                Rectangle {
-                    width: 100
-                    height: 100
-                    color: gvindex === 0 ? "green" : "blue"
-                    MouseArea {
-                        anchors.fill: parent
-                        onPressed: {
-                            gv.currentIndex = index
+
+            WheelHandler {
+                onWheel: function handler(event) {
+                    let cellScale = event.angleDelta.y * 0.125
+                    if (event.modifiers & Qt.ControlModifier) {
+                        gridView.cellHeight = Math.min(Math.max(gridView.cellHeight + cellScale, 150), 400)
+                        gridView.cellWidth = Math.min(Math.max(gridView.cellWidth + cellScale, 150), 400)
+                    } else {
+                        if (event.angleDelta.y > 0) {
+                            scrollBar.decrease()
+                        } else {
+                            scrollBar.increase()
                         }
                     }
+                    event.accepted = false
+                    console.log(cellScale, gridView.cellHeight,gridView.cellWidth)
                 }
             }
 
-            highlight: Rectangle { color: "transparent"; border.color: "lightblue"; border.width: 2; radius: 5; z: 2}
-            highlightMoveDuration: 0
-        }
+            delegate: Rectangle {
+                id: control
+                width: gridView.cellWidth - 10
+                height: gridView.cellHeight - 10
+                color: "transparent"
+                border.color: "#3E3E3E"
+                border.width: 2
+                clip: true
+                Column {
+                    anchors.fill: parent
+                    anchors.margins: parent.border.width
+                    Rectangle {
+                        width: parent.width
+                        height: parent.height - desc.height
+                        color: "transparent"
+                        border.color: gridView.currentIndex === index ? Theme.highlight : "transparent"
+                        border.width: 4
+                        Image {
+                            id: image
+                            anchors.fill: parent
+                            anchors.margins: parent.border.width
+                            asynchronous: true
+                            source: "file:///D:/Datasets/Photos/raw/FuVSc7GakAAS0ZC.jpg"
+                            clip: true
+                            fillMode: Image.PreserveAspectCrop
+                        }
+                    }
+                    Label {
+                        id: desc
+                        clip: true
+                        text: image.source
+                    }
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onPressed: {
+                        gridView.currentIndex = index
+                    }
+                }
+                Component.onCompleted: {
+                    console.log("add", index)
+                }
 
+                Component.onDestruction: {
+                    console.log("delete", index)
+                }
+            }
+        }
     }
 }
+
+
 
 
 
