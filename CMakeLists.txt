@@ -11,12 +11,19 @@ project(${PROJECT_NAME}
         DESCRIPTION "DeepLearning Studio for Labeling and Training"
 )
 
+cmake_policy(SET CMP0099 NEW)
+
 if(NOT CMAKE_CUDA_HOST_COMPILER)
     set(CMAKE_CUDA_HOST_COMPILER "${CMAKE_CXX_COMPILER}")
 endif()
 
 enable_language(CUDA)
 
+
+# 是否编译测试用例
+option(BUILD_TESTS "Enable testsuite" ON)
+# 是否编译文档
+option(BUILD_DOCS "Build Doc" ON)
 
 
 # Configure build tree ======================
@@ -31,7 +38,9 @@ include(ConfigCUDA)
 add_subdirectory(3rdparty EXCLUDE_FROM_ALL)
 add_subdirectory(src)
 
-
+if(BUILD_TESTS)
+    add_subdirectory(tests)
+endif()
 
 
 
