@@ -1,17 +1,5 @@
-set(TEST_NAME "Components")
+set(TEST_NAME "ComponentsTest")
 enable_testing()
-
-# 添加 qml 导入目录
-list(APPEND QML_IMPORT_PATH "${CMAKE_SOURCE_DIR}/src/qml")
-
-# 去除重复
-list(REMOVE_DUPLICATES QML_IMPORT_PATH)
-
-# 将导入目录添加到 cache, 强制更新
-set(QML_IMPORT_PATH ${QML_IMPORT_PATH}
-    CACHE STRING "qml import paths"
-    FORCE
-)
 
 # 在 shadow builds 中，不需要复制 qml 测试文件，只需要设置相应的定义
 # 将 QUICK_TEST_SOURCE_DIR 设置为当前目录
