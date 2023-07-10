@@ -2,7 +2,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import "../Components"
+//import "../Components"
+import QuickUI
 
 import dl.studio.theme 1.0
 
