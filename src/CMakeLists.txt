@@ -1,5 +1,5 @@
 
-add_subdirectory(QuickUIPlugin)
+add_subdirectory(QuickUI)
 
 # 获取当前目录下所有 qml 文件, 添加到 QML_SOURCES 变量中
 file(GLOB_RECURSE QML_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} qml/*.qml)
@@ -37,18 +37,6 @@ qt_add_resources(${PROJECT_NAME} "controls_conf"
     FILES "qtquickcontrols2.conf"
 )
 
-
-# 添加 qml 导入目录
-list(APPEND QML_IMPORT_PATH "${CMAKE_BINARY_DIR}/QuickUI")
-
-# 去除重复
-list(REMOVE_DUPLICATES QML_IMPORT_PATH)
-
-# 将导入目录添加到 cache, 强制更新
-set(QML_IMPORT_PATH ${QML_IMPORT_PATH}
-    CACHE STRING "qml import paths"
-    FORCE
-)
 
 # 如果编译模式是Debug或RelWithDebInfo，则添加预处理定义QT_QML_DEBUG。用于开启Qt Quick调试功能
 target_compile_definitions(${PROJECT_NAME}
