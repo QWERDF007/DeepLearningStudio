@@ -11,6 +11,9 @@ Item {
     id: root
     width: 400
     height: 600
+
+
+
     Expander {
         anchors.fill: parent
         anchors.leftMargin: 10
@@ -19,6 +22,7 @@ Item {
             id: gridView
             anchors.fill: parent
             boundsBehavior: Flickable.StopAtBounds
+
             ScrollBar.vertical: ScrollBar {
                 id: scrollBar
                 policy: gridView.contentHeight > gridView.height ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
@@ -30,12 +34,14 @@ Item {
             cellWidth: 200
             model: 100
 
+
             WheelHandler {
                 onWheel: function handler(event) {
                     let cellScale = event.angleDelta.y * 0.125
                     if (event.modifiers & Qt.ControlModifier) {
                         gridView.cellHeight = Math.min(Math.max(gridView.cellHeight + cellScale, 150), 400)
                         gridView.cellWidth = Math.min(Math.max(gridView.cellWidth + cellScale, 150), 400)
+
                     } else {
                         if (event.angleDelta.y > 0) {
                             scrollBar.decrease()
@@ -43,10 +49,11 @@ Item {
                             scrollBar.increase()
                         }
                     }
-                    event.accepted = false
+                    event.accepted = true
                     console.log(cellScale, gridView.cellHeight,gridView.cellWidth)
                 }
             }
+
 
             delegate: Rectangle {
                 id: control
@@ -97,6 +104,25 @@ Item {
             }
         }
     }
+
+    // 鼠标区域, 覆盖 GridView, 修改滚轮+Ctrl的行为, 保持流畅的滚动效果
+//    MouseArea {
+//        anchors.fill: parent
+//        onPressed: (mouse)=> { mouse.accepted = false }
+//        onClicked: (mouse)=> { mouse.accepted = false }
+//        onDoubleClicked: (mouse)=> { mouse.accepted = false }
+//        onReleased: (mouse)=> { mouse.accepted = false }
+//        onWheel: (mouse)=> {
+//            let cellScale = mouse.angleDelta.y * 0.125
+//            if (mouse.modifiers & Qt.ControlModifier) {
+//                gridView.cellHeight = Math.min(Math.max(gridView.cellHeight + cellScale, 150), 400)
+//                gridView.cellWidth = Math.min(Math.max(gridView.cellWidth + cellScale, 150), 400)
+//                mouse.accepted = true
+//            } else {
+//                mouse.accepted = false
+//            }
+//        }
+//    }
 }
 
 

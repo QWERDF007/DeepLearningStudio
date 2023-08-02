@@ -4,7 +4,7 @@ import QtQuick.Layouts
 import dl.studio.theme 1.0
 
 Rectangle {
-    id: root
+    id: control
     height: 600
     width: 200
     color: Theme.primary
@@ -28,6 +28,8 @@ Rectangle {
             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
             ScrollBar.vertical.policy: scrollview.contentHeight > scrollview.height ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
             ScrollBar.vertical.width: 8
+
+
             contentWidth: availableWidth
 
             ColumnLayout {
@@ -46,8 +48,8 @@ Rectangle {
 
                         }
                         ToolButton {
-                            implicitWidth: root.iconSize
-                            implicitHeight: root.iconSize
+                            implicitWidth: control.iconSize
+                            implicitHeight: control.iconSize
                             icon.source: "/icons/edit"
                             ToolTip.visible: hovered
                             ToolTip.delay: 500
@@ -107,8 +109,8 @@ Rectangle {
 
                         }
                         ToolButton {
-                            implicitWidth: root.iconSize
-                            implicitHeight: root.iconSize
+                            implicitWidth: control.iconSize
+                            implicitHeight: control.iconSize
                             icon.source: "/icons/edit"
                             ToolTip.visible: hovered
                             ToolTip.delay: 500
@@ -151,7 +153,7 @@ Rectangle {
                     }
                     Label {
                         Layout.fillWidth: true
-                        text: root.ctime + " / " + root.mtime
+                        text: control.ctime + " / " + control.mtime
                         font.pointSize: 12
                         wrapMode: Text.WordWrap
                     }

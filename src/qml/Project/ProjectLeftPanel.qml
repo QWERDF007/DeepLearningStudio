@@ -11,7 +11,7 @@ Item {
 
     ColumnLayout {
         anchors.fill: parent
-
+        spacing: 5
 
         Rectangle {
             Layout.fillWidth: true
