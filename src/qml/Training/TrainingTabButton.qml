@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Controls.Material.impl
 
 import dl.studio.theme 1.0
 
@@ -28,9 +29,20 @@ TabButton {
         implicitWidth: 100
         implicitHeight: control.height
         opacity: enabled ? 1 : 0.3
-
+        clip: true
         color: control.hovered ? Qt.lighter(control.checked ? Theme.tabButton.highlight:  control.down ? Theme.tabButton.down : Theme.tabButton.primary, 1.1) :
                                  control.checked ? Theme.tabButton.highlight:  control.down ? Theme.tabButton.down : Theme.tabButton.primary
         radius: 2
+
+        // 波纹效果
+        Ripple {
+            clipRadius: 1
+            width: parent.width
+            height: parent.height
+            pressed: control.pressed
+            anchor: control
+            active: control.down
+            color: control.flat && control.highlighted ?  control.Material.highlightedRippleColor : control.Material.rippleColor
+        }
     }
 }
