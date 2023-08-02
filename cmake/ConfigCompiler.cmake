@@ -27,7 +27,7 @@ endif()
 if(UNIX)
     set(C_WARNING_FLAGS "-Wall -Wno-unknown-pragmas -Wpointer-arith -Wmissing-declarations -Wredundant-decls -Wmultichar -Wno-unused-local-typedefs -Wunused")
 elseif(WIN32)
-    set(C_WARNING_FLAGS "-Wall")
+    # set(C_WARNING_FLAGS "-Wall")
 endif()
 
 # 设置 ${CXX_WARNING_FLAGS}，让编译器在发现未使用 override 关键字的虚函数重写时发出警告
