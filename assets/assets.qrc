@@ -22,5 +22,6 @@
         <file alias="file">icons/file.svg</file>
         <file alias="folder">icons/folder.svg</file>
         <file alias="close">icons/close.svg</file>
+        <file alias="remove">icons/remove.svg</file>
     </qresource>
 </RCC>
