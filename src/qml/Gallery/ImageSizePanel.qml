@@ -7,9 +7,17 @@ import dl.studio.theme 1.0
 import QuickUI
 
 Rectangle {
+    id: imageSizePanel
     width: 400
     height: 400
     color: Theme.primary
+
+    focus: visible
+
+    property alias sizeScaleFrom: imageSizeSlider.from
+    property alias sizeScaleValue: imageSizeSlider.value
+    property alias sizeScaleTo: imageSizeSlider.to
+    property alias sizeScaleStepSize: imageSizeSlider.stepSize
 
     RowLayout {
         anchors.fill: parent
@@ -31,9 +39,10 @@ Rectangle {
 
         QuickSlider {
             id: imageSizeSlider
-            from: 0.25
-            to: 2.5
-            stepSize: 0.25 // 刻度步长
+//            from: 0.5
+//            to: 2
+//            value: 1.0
+//            stepSize: 0.25 // 刻度步长
             snapMode: Slider.SnapAlways // 拖动时滑块移到刻度上
             Layout.fillWidth: true
             ToolTip {
@@ -54,6 +63,18 @@ Rectangle {
             onPressed: {
                 imageSizeSlider.increase()
             }
+        }
+    }
+
+
+    Keys.onPressed: (event)=> {
+        console.log("imagesize", event.key)
+        if ((event.key === Qt.Key_Plus) && (event.modifiers & Qt.ControlModifier)) {
+            imageSizeSlider.increase()
+        } else if ((event.key === Qt.Key_Minus) && (event.modifiers & Qt.ControlModifier)) {
+            imageSizeSlider.decrease()
+        } else {
+            event.accept = false
         }
     }
 }

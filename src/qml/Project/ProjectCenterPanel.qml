@@ -36,20 +36,13 @@ Item {
 
 
             WheelHandler {
+                acceptedModifiers: Qt.ControlModifier
                 onWheel: function handler(event) {
                     let cellScale = event.angleDelta.y * 0.125
-                    if (event.modifiers & Qt.ControlModifier) {
-                        gridView.cellHeight = Math.min(Math.max(gridView.cellHeight + cellScale, 150), 400)
-                        gridView.cellWidth = Math.min(Math.max(gridView.cellWidth + cellScale, 150), 400)
 
-                    } else {
-                        if (event.angleDelta.y > 0) {
-                            scrollBar.decrease()
-                        } else {
-                            scrollBar.increase()
-                        }
-                    }
-                    event.accepted = true
+                    gridView.cellHeight = Math.min(Math.max(gridView.cellHeight + cellScale, 150), 400)
+                    gridView.cellWidth = Math.min(Math.max(gridView.cellWidth + cellScale, 150), 400)
+
                     console.log(cellScale, gridView.cellHeight,gridView.cellWidth)
                 }
             }
@@ -95,11 +88,11 @@ Item {
                     }
                 }
                 Component.onCompleted: {
-                    console.log("add", index)
+//                    console.log("add", index)
                 }
 
                 Component.onDestruction: {
-                    console.log("delete", index)
+//                    console.log("delete", index)
                 }
             }
         }

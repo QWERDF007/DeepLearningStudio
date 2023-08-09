@@ -35,6 +35,10 @@ ToolBar {
 
         MainTabBar {
             id: mainTabBar
+            Keys.onPressed: (event)=> {
+                console.log(event.key)
+            }
+
             Layout.alignment: Qt.AlignVCenter
             Layout.fillWidth: true
             Repeater {
@@ -48,6 +52,7 @@ ToolBar {
                     anchors.verticalCenter: parent.verticalCenter
                     text: modelData
                     textColor: mainTabBar.currentIndex === index ? Theme.highlight : "white"
+                    focusPolicy: Qt.NoFocus
                 }
             }
         }

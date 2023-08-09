@@ -4,11 +4,18 @@ import QtQuick.Layouts
 
 import "../Project"
 
+
 Item {
-//    id: control
+    id: galleryLeftPanel
     width: 200
     height: 200
     clip: true
+
+    property alias sizeScaleFrom: imageSizePanel.sizeScaleFrom
+    property alias sizeScaleValue: imageSizePanel.sizeScaleValue
+    property alias sizeScaleTo: imageSizePanel.sizeScaleTo
+    property alias sizeScaleStepSize: imageSizePanel.sizeScaleStepSize
+
 
     ColumnLayout {
         anchors.fill: parent
@@ -44,6 +51,7 @@ Item {
         }
 
         ImageSizePanel {
+            id: imageSizePanel
             Layout.fillWidth: true
             height: 48
         }
