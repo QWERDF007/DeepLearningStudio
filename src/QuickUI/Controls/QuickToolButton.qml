@@ -1,6 +1,7 @@
-import QtQuick
+﻿import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material.impl
+import Qt5Compat.GraphicalEffects
 
 //import dl.studio.theme 1.0
 
@@ -45,6 +46,7 @@ ToolButton {
 
         // 波纹效果
         Ripple {
+            id: ripple
             clipRadius: 1
             width: parent.width
             height: parent.height
@@ -52,6 +54,16 @@ ToolButton {
             anchor: control
             active: control.down
             color: control.flat && control.highlighted ?  control.Material.highlightedRippleColor : control.Material.rippleColor
+            // 圆形按钮时, 波纹效果的透明掩码, 避免超出背景
+            layer.enabled: true
+            layer.effect: OpacityMask {
+                maskSource: Rectangle
+                {
+                    width: ripple.width
+                    height: ripple.height
+                    radius: control.radius
+                }
+            }
         }
     }
 }
