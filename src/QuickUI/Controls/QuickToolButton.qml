@@ -36,8 +36,8 @@ ToolButton {
     }
 
     background: Rectangle {
-        implicitWidth: content.width
-        implicitHeight: content.height
+        width: control.implicitWidth
+        height: control.implicitHeight
         radius: control.radius
         clip: true
         color: Qt.lighter(control.backgroundColor, control.hovered ? 1.2 : 1.0)
