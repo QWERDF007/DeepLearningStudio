@@ -81,7 +81,7 @@ ColumnLayout {
 
         ScrollBar.vertical: ScrollBar {
             id: scrollbar
-            policy: ScrollBar.AsNeeded
+            policy: modelListView.contentHeight > modelListView.height ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
             width: 8
         }
         clip: true
