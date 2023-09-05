@@ -12,6 +12,9 @@ class QuickColor : public QObject
     Q_PROPERTY_AUTO(QString, Primary)
     Q_PROPERTY_AUTO(QString, HighLight)
     Q_PROPERTY_AUTO(QString, BackGround)
+    Q_PROPERTY_AUTO(QString, BrightButton)
+    Q_PROPERTY_AUTO(QString, DarkButton)
+    Q_PROPERTY_AUTO(QString, Shadow)
 
     /**
      * 在 QML 中通过 QuickColor 可访问本单例

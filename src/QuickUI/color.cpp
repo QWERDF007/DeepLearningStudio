@@ -24,9 +24,13 @@ QuickColor::QuickColor(QObject *parent)
 {
     Primary("#3D3D3D");
     HighLight("#009688");
-    BackGround("#595959");
+    BackGround("#303030");
+    BrightButton("#5A5A5A");
+    DarkButton("#4E4E4E");
+    Shadow("#222222");
 }
 
 QuickColor::~QuickColor()
 {
+    qDebug() << __FUNCTION__ << "deconstructor";
 }
