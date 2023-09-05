@@ -34,6 +34,9 @@ Item {
             cellWidth: 200
             model: 100
 
+            onCurrentIndexChanged: {
+                console.log("currentIndex", currentIndex)
+            }
 
             WheelHandler {
                 acceptedModifiers: Qt.ControlModifier
@@ -46,7 +49,6 @@ Item {
                     console.log(cellScale, gridView.cellHeight,gridView.cellWidth)
                 }
             }
-
 
             delegate: Rectangle {
                 id: control
@@ -85,8 +87,10 @@ Item {
                     anchors.fill: parent
                     onPressed: {
                         gridView.currentIndex = index
+                        control.forceActiveFocus()
                     }
                 }
+
                 Component.onCompleted: {
 //                    console.log("add", index)
                 }
