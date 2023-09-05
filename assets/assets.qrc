@@ -25,5 +25,21 @@
         <file alias="remove">icons/remove.svg</file>
         <file alias="visible">icons/visible.svg</file>
         <file alias="invisible">icons/invisible.svg</file>
+        <file alias="del">icons/del.svg</file>
+        <file alias="brightness">icons/brightness.svg</file>
+        <file alias="contrast">icons/contrast.svg</file>
+        <file alias="size_plus">icons/thumb_size_plus.svg</file>
+        <file alias="bar_chart">icons/bar_chart.svg</file>
+        <file alias="filter_hide">icons/filter_hide.svg</file>
+        <file alias="filter_show">icons/filter_show.svg</file>
+        <file alias="help_menu">icons/help_menu_down.svg</file>
+        <file alias="check">icons/check.svg</file>
+        <file alias="circle_unchecked">icons/circle_unchecked.svg</file>
+        <file alias="opacity">icons/opacity.svg</file>
+        <file alias="search">icons/search.svg</file>
+        <file alias="sort">icons/sort.svg</file>
+        <file alias="split">icons/split.svg</file>
+        <file alias="square_unchecked">icons/square_unchecked.svg</file>
+        <file alias="filter_add">icons/filter_add.svg</file>
     </qresource>
 </RCC>
