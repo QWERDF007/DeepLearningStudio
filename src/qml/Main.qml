@@ -22,7 +22,7 @@ ApplicationWindow  {
     //标题栏
     header: MainHeader {
         id: mainHeader
-        height: 48
+//        height: 48
     }
 
 
@@ -32,10 +32,7 @@ ApplicationWindow  {
         currentIndex: mainHeader.currentIndex
     }
 
-    footer: Rectangle {
-        height: 28
-        width: parent.width
-        color: Theme.primary
+    footer: MainFooter {
     }
 
     Component.onCompleted: {
