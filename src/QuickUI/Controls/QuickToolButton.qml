@@ -10,12 +10,14 @@ import QuickUI
 
 ToolButton {
     id: control
-    property color backgroundColor: QuickColor.BackGround
+    property color backgroundColor: QuickColor.BrightButton
     property int radius: 2
     property bool backgroundVisible: true
 
-    implicitWidth: Math.max(implicitBackgroundWidth, implicitContentWidth)
-    implicitHeight: Math.max(implicitBackgroundHeight, implicitContentHeight)
+    implicitWidth: implicitContentWidth/* + leftPadding + rightPadding*/
+    implicitHeight: implicitContentHeight/* + topPadding + bottomPadding*/
+
+//    padding: 0
 
     icon.color: control.palette.brightText
     spacing: 6
@@ -42,7 +44,7 @@ ToolButton {
         clip: true
         color: Qt.lighter(control.backgroundColor, control.hovered ? 1.2 : 1.0)
         opacity: enabled ? 1 : 0.3
-        visible: control.backgroundVisible || control.hovered
+        visible: control.backgroundVisible
 
         // 波纹效果
         Ripple {

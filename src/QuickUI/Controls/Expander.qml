@@ -4,9 +4,11 @@ import QtQuick.Layouts
 //import QtQuick.Window
 
 Item {
-    property string headerText: "Titlte"
+    property alias headerText: header.text
+    property alias headerFont: header.font
+    property alias headerHeight: layout_header.height
     property bool expand: true
-    property bool init: true
+    property bool init: true // 优化初始化折叠显示
     property int contentHeight : height - layout_header.height
     property int duration: 500
     default property alias content: container.data
@@ -16,7 +18,7 @@ Item {
     Item {
         id:layout_header
         width: parent.width
-        height: 45
+        height: 32
         RowLayout {
             width: parent.width
             ToolButton {
@@ -37,7 +39,8 @@ Item {
                 }
             }
             Label {
-                text: headerText
+                id: header
+                text: qsTr("Title")
                 Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
             }

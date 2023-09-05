@@ -13,6 +13,7 @@ TabBar {
 
     spacing: 1
 
+
     contentItem: ListView {
         id: lv
         height: control.height
