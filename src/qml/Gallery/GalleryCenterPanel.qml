@@ -41,7 +41,7 @@ Item {
         layoutDirection: Qt.LeftToRight
 
         clip: true
-        cacheBuffer: 1080
+        cacheBuffer: 1080 * cellScaleValue
         cellHeight: 320 * cellScaleValue + 10
         cellWidth: 320 * cellScaleValue + 10
 //        model: 100
@@ -93,8 +93,8 @@ Item {
 //                                                source: "file:///D:/Datasets/Photos/raw/FuVSc7GakAAS0ZC.jpg"
                         source: folderModel.folder + "/" + model.fileName
 //                        source: "file:///" + modelData
-//                        sourceSize.height: control.height
-//                        sourceSize.width: control.width
+                        sourceSize.height: image.height
+                        sourceSize.width: image.width
                         clip: true
                         fillMode: Image.PreserveAspectFit
                         //                        sourceSize.width: gridView.cellWidth
@@ -116,6 +116,7 @@ Item {
                 anchors.fill: parent
                 onPressed: {
                     gridView.currentIndex = index
+                    control.forceActiveFocus()
                 }
             }
 

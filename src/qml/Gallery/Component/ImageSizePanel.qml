@@ -24,14 +24,13 @@ Rectangle {
         anchors.margins: 5
 
         QuickToolButton {
-            backgroundVisible: false
+            backgroundVisible: hovered
             ToolTip.visible: hovered
             ToolTip.delay: 500
             ToolTip.text: qsTr("降低缩率图尺寸 (Ctrl+-)")
             icon.source: "/icons/remove"
             icon.height: 24
             icon.width: 24
-
             onPressed: {
                 imageSizeSlider.decrease()
             }
@@ -52,7 +51,7 @@ Rectangle {
         }
 
         QuickToolButton {
-            backgroundVisible: false
+            backgroundVisible: hovered
             ToolTip.visible: hovered
             ToolTip.delay: 500
             ToolTip.text: qsTr("增大缩率图尺寸 (Ctrl++)")

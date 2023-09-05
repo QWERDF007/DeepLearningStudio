@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import "../Project"
+import "Component"
 
 
 Item {
@@ -21,11 +22,6 @@ Item {
         anchors.fill: parent
         spacing: 5
 
-        ProjectSummary {
-            Layout.fillWidth: true
-            editable: false
-        }
-
         SplitView {
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -37,8 +33,8 @@ Item {
 
             ImageInfoPanel {
                 SplitView.minimumHeight: 48
-                SplitView.maximumHeight: 400
-                implicitHeight: 340
+                SplitView.maximumHeight: 480
+                implicitHeight: 360
             }
 
             SelectedInfoPanel {
