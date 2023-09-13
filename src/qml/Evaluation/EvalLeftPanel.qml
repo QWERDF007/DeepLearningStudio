@@ -1,14 +1,15 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import dl.studio.theme 1.0
+
+import QuickUI
 
 Rectangle {
     id: root
     implicitWidth: 280
     SplitView.minimumWidth: 220
     SplitView.maximumWidth: 400
-    color: Theme.primary
+    color: QuickColor.Primary
 
     ListModel{
         id: dlModel
