@@ -6,7 +6,7 @@ import QuickUI
 ProgressBar {
     id: control
     value: 0.5
-    padding: 2
+    padding: 1
 
     implicitWidth: 100
     implicitHeight: 20
@@ -16,11 +16,9 @@ ProgressBar {
 
     background: Rectangle {
         id: _background
+//        anchors.fill: parent
         implicitWidth: control.implicitWidth
         implicitHeight: control.implicitHeight
-
-//        anchors.fill: parent
-
         color: QuickColor.BackGround
         radius: 0
     }
@@ -31,6 +29,8 @@ ProgressBar {
         implicitHeight: control.implicitHeight
 
         Rectangle {
+//            anchors.top: parent.top
+//            anchors.bottom: parent.bottom
             width: control.visualPosition * parent.width
             height: parent.height
             radius: 0

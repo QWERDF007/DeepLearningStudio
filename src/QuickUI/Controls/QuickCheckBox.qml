@@ -16,17 +16,19 @@ CheckBox {
     padding: 6
     spacing: 6
 
+    property int duration: 83
     property alias colorImage: colorImage
     property alias indicatorItem: _indicator
+    property alias indicatorBackground: indicatorBackground
     property alias partiallyCheckedIndicator: partiallyCheckedIndicator
     property alias checkLabel: checkLabel
 
     // keep in sync with CheckDelegate.qml (shared CheckIndicator.qml was removed for performance reasons)
     indicator: Rectangle {
         id: _indicator
-        property real sizeScale: 1.0
-        implicitWidth: Math.min(24, Math.min(control.width, control.height)) * sizeScale
-        implicitHeight: Math.min(24, Math.min(control.width, control.height)) * sizeScale
+//        property real sizeScale: 1.0
+        implicitWidth: Math.min(24, Math.min(control.width, control.height))
+        implicitHeight: Math.min(24, Math.min(control.width, control.height))
 
         radius: 3
 
@@ -39,7 +41,7 @@ CheckBox {
 
         Behavior on color {
             ColorAnimation {
-                duration: 200
+                duration: control.duration
             }
         }
 
@@ -53,6 +55,11 @@ CheckBox {
             color: control.palette.text
             source: "qrc:/qt-project.org/imports/QtQuick/Controls/Basic/images/check.png"
             visible: control.checkState === Qt.Checked
+            Behavior on visible {
+                NumberAnimation{
+                    duration: control.duration
+                }
+            }
         }
 
         Rectangle {
@@ -69,8 +76,8 @@ CheckBox {
     // 动画, 先缩小然后再放大
     SequentialAnimation {
         id: scaleAnimation
-        NumberAnimation { target: _indicator; property: "sizeScale"; to: 0.8; easing.type: Easing.InOutQuad; duration: 200 }
-        NumberAnimation { target: _indicator; property: "sizeScale"; to: 1.0; easing.type: Easing.InOutQuad; duration: 200 }
+        NumberAnimation { target: _indicator; property: "scale"; to: 0.8; easing.type: Easing.OutCubic; duration: control.duration }
+        NumberAnimation { target: _indicator; property: "scale"; to: 1.0; easing.type: Easing.OutCubic; duration: control.duration }
     }
 
     onCheckStateChanged: {
@@ -79,7 +86,7 @@ CheckBox {
 
     // 鼠标悬浮时勾选框的虚化圆形背景
     Rectangle {
-        id: indicatorBg
+        id: indicatorBackground
         anchors.centerIn: _indicator
         implicitHeight: _indicator.implicitHeight * 1.6
         implicitWidth: _indicator.implicitWidth * 1.6
@@ -104,7 +111,7 @@ CheckBox {
                 {
                     width: ripple.width
                     height: ripple.height
-                    radius: indicatorBg.radius
+                    radius: indicatorBackground.radius
                 }
             }
         }
