@@ -1,5 +1,5 @@
 # 设置 Qt 的 cmake 文件目录
-set(QT_CMAKE_DIR "H:/Software/Qt/6.5.1/msvc2019_64/lib/cmake/Qt6")
+set(QT_CMAKE_DIR "H:/Software/Qt/6.5.2/msvc2019_64/lib/cmake/Qt6")
 
 
 # 寻找Qt6的Quick组件
