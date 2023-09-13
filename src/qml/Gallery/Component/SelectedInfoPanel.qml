@@ -2,15 +2,13 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import dl.studio.theme 1.0
-
 import QuickUI
 
 Rectangle {
     id: control
     width: 400
     height: 400
-    color: Theme.primary
+    color: QuickColor.Primary
     property int iconSize: 14
     property int selected: 1
     property int total: 20

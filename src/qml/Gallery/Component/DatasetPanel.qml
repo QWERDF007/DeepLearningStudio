@@ -2,14 +2,12 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import dl.studio.theme 1.0
-
 import QuickUI
 
 Rectangle {
     width: 200
     height: 200
-    color: Theme.primary
+    color: QuickColor.Primary
 
     Expander {
         id: imageInfoExpander
@@ -25,7 +23,6 @@ Rectangle {
             clip: true
             height: parent.height
             width: parent.width
-//            contentWidth: availableWidth
             spacing: 3
 
             ScrollBar.vertical: ScrollBar {
@@ -41,16 +38,16 @@ Rectangle {
                 ListElement { text: "数据集070112312312"; labeled: 10; total: 20 }
                 ListElement { text: "数据集0801412312"; labeled: 0; total: 20 }
                 ListElement { text: "数据集07304412121"; labeled: 10; total: 20 }
-                ListElement { text: "数据集071234"; labeled: 11; total: 20 }
+                ListElement { text: "数据集071234"; labeled: 20; total: 20 }
                 ListElement { text: "数据集0656124"; labeled: 10; total: 30 }
                 ListElement { text: "数据集012567"; labeled: 10; total: 20 }
                 ListElement { text: "数据集0729123123"; labeled: 10; total: 2000 }
                 ListElement { text: "数据集072912312321"; labeled: 10; total: 50 }
                 ListElement { text: "数据集072967568678"; labeled: 10; total: 20 }
-                ListElement { text: "数据集07291dsfgfa"; labeled: 12; total: 9999 }
+                ListElement { text: "数据集07291dsfgfa"; labeled: 555; total: 9999 }
                 ListElement { text: "数据集0729gfdgfd"; labeled: 14; total: 28 }
                 ListElement { text: "数据集072911qqq"; labeled: 16; total: 29 }
-                ListElement { text: "数据集0729ffsadr"; labeled: 10; total: 24 }
+                ListElement { text: "数据集0729ffsadr"; labeled: 24; total: 24 }
                 ListElement { text: "数据集0729hhgfjfjf"; labeled: 10; total: 25 }
             }
             delegate: Rectangle {
@@ -73,39 +70,12 @@ Rectangle {
 
                 HoverHandler { id: hoverHandler}
 
-
                 RowLayout {
                     id: row
                     anchors.fill: parent
                     anchors.leftMargin: 5
-                    anchors.rightMargin: 10
+                    anchors.rightMargin: 5
                     spacing: 3
-                    QuickToolButton {
-                        id: visibleBtn
-                        checkable: true
-                        icon.source: "/icons/visible"
-                        icon.color: Qt.lighter(visibleBtn.palette.brightText, visibleBtn.hovered ? 1.0 : 0.7)
-                        icon.height: 12
-                        icon.width: 12
-                        padding: 0
-                        backgroundVisible: false
-                        ToolTip {
-                            id: visibleBtnTip
-                            visible: visibleBtn.hovered
-                            delay: 500
-                            text: qsTr("隐藏数据集")
-                        }
-
-                        Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                        states: State {
-                            name: "checked"
-                            when: visibleBtn.checked
-                            PropertyChanges { visibleBtn.icon.source: "/icons/invisible"; visibleBtnTip.text: qsTr("显示数据集") }
-                        }
-                        onClicked: {
-                            console.log(visibleBtn.checked ? "隐藏" : "显示", model.text)
-                        }
-                    }
 
                     Label {
                         id: datasetNameLabel
@@ -130,19 +100,10 @@ Rectangle {
                         }
                     }
 
-//                    ProgressBar {
-//                        implicitWidth: 60
-//                        from: 0
-//                        to: model.total
-//                        value: model.labeled
-//                        Layout.alignment: Qt.AlignHCenter | Qt.AlignRight
-//                        //                        Layout.fillHeight: true
-//                    }
-
                     QuickProgressBar {
                         id: pb
-                        implicitWidth: 60
-                        implicitHeight: 12
+                        implicitWidth: 50
+                        implicitHeight: 10
                         from: 0
                         to: model.total
                         value: model.labeled
@@ -157,47 +118,23 @@ Rectangle {
 
                     QuickToolButton {
                         id: editBtn
-                        icon.source: "/icons/edit"
+                        icon.source: "/icons/kebab"
                         icon.color: Qt.lighter(editBtn.palette.brightText, editBtn.hovered ? 1.0 : 0.7)
-                        icon.height: 12
-                        icon.width: 12
+                        icon.height: 16
+                        icon.width: 16
                         padding: 0
                         backgroundVisible: false
                         ToolTip {
                             id: editBtnTip
                             visible: editBtn.hovered
                             delay: 500
-                            text: qsTr("编辑数据集")
+                            text: qsTr("显示进一步的行动")
                         }
 
                         Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                         onClicked: {
                             console.log("编辑", model.text)
                         }
-                    }
-                }
-
-                QuickToolButton {
-                    id: deleteBtn
-                    icon.source: "/icons/delete"
-                    icon.color: Qt.lighter(visibleBtn.palette.brightText, deleteBtn.hovered ? 1.0 : 0.7)
-                    icon.height: 10
-                    icon.width: 9
-                    padding: 0
-                    backgroundVisible: false
-                    ToolTip {
-                        id: deleteBtnTip
-                        visible: deleteBtn.hovered
-                        delay: 500
-                        text: qsTr("删除数据集")
-                    }
-                    anchors.horizontalCenter: datasetItem.right
-                    anchors.horizontalCenterOffset: -3
-                    anchors.verticalCenter: datasetItem.top
-                    anchors.verticalCenterOffset: 5
-
-                    onClicked: {
-                        console.log("删除数据集", model.text)
                     }
                 }
             }
