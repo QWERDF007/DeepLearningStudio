@@ -2,15 +2,13 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import dl.studio.theme 1.0
-
 import QuickUI
 
 Rectangle {
     id: mainHeader
     height: 28
     width: parent.width
-    color: Theme.primary
+    color: QuickColor.Primary
 
     RowLayout {
         anchors.fill: parent

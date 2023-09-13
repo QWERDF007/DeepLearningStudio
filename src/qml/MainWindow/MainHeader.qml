@@ -16,9 +16,6 @@ Item {
     property alias currentIndex: mainTabBar.currentIndex
     property alias currentItem: mainTabBar.currentItem
 
-    //    background: Rectangle {
-    //        color: Theme.primary
-    //    }
     ColumnLayout {
         anchors.fill: parent
         anchors.topMargin: 0
@@ -42,7 +39,7 @@ Item {
                         icon.height: 36
                         icon.width: 28
                         onClicked: mainMenu.isOpened ? mainMenu.close() : mainMenu.open()
-                        backgroundColor: Theme.primary
+                        backgroundColor: QuickColor.Primary
                         MainMenu {
                             id: mainMenu
                             y: parent.height
@@ -68,7 +65,7 @@ Item {
                                 implicitHeight: parent.height
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: modelData
-                                textColor: mainTabBar.currentIndex === index ? Theme.highlight : "white"
+                                textColor: mainTabBar.currentIndex === index ? QuickColor.HighLight : "white"
                                 focusPolicy: Qt.NoFocus
                             }
                         }
@@ -252,7 +249,7 @@ Item {
     states: State {
         name: "checked"
         when: filterBtn.checked
-        PropertyChanges { filterBtn.icon.source: "/icons/filter_hide"; filterBtn.icon.color: Theme.highlight }
+        PropertyChanges { filterBtn.icon.source: "/icons/filter_hide"; filterBtn.icon.color: QuickColor.HighLight }
         PropertyChanges { mainHeader.implicitHeight: 96 }
         PropertyChanges { filterBar.visible: true }
     }

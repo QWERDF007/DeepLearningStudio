@@ -2,14 +2,14 @@
 import QtQuick
 import QtQuick.Controls
 
-import dl.studio.theme 1.0
+import QuickUI
 
 TabBar {
     id: control
     width: parent.width
 //    height: parent.height
     background: Rectangle {
-        color: Theme.primary
+        color: QuickColor.Primary
         height: control.height
     }
 
@@ -33,7 +33,7 @@ TabBar {
             y: lv.height - height
             height: 2
             width: 100
-            color: Theme.highlight
+            color: QuickColor.HighLight
             Behavior on x {
                 SmoothedAnimation {
                     duration: 300
