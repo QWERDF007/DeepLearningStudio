@@ -182,7 +182,7 @@ Rectangle {
             }
         }
         Button {
-            text: qsTr("打开项目")
+            text: qsTr("打开")
             font.pointSize: 12
             icon.source: "/icons/close"
             icon.height: iconSize
