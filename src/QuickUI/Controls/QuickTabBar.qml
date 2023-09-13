@@ -2,12 +2,14 @@
 import QtQuick
 import QtQuick.Controls
 
+import QuickUI
+
 TabBar {
     id: control
     width: parent.width
 //    height: parent.height
     background: Rectangle {
-        color: Theme.primary
+        color: QuickColor.Primary
         height: control.height
     }
 
