@@ -41,5 +41,9 @@
         <file alias="split">icons/split.svg</file>
         <file alias="square_unchecked">icons/square_unchecked.svg</file>
         <file alias="filter_add">icons/filter_add.svg</file>
+        <file alias="left_arrow">icons/left_arrow.svg</file>
+        <file alias="right_arrow">icons/right_arrow.svg</file>
+        <file alias="zoom_in">icons/zoom_in.svg</file>
+        <file alias="zoom_out">icons/zoom_out.svg</file>
     </qresource>
 </RCC>
