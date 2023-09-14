@@ -1,15 +1,16 @@
-import QtQuick
+﻿import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
 import Qt.labs.qmlmodels
 
-import QuickUI
+//import QuickUI
 
 Rectangle {
     implicitHeight: 200
     implicitWidth: 200
-    color: QuickColor.Primary
+    //    color: QuickColor.Primary
+    color: "#3D3D3D"
 
     ColumnLayout {
         anchors.fill: parent
@@ -38,6 +39,7 @@ Rectangle {
                 anchors.left: tableView.left
                 anchors.top: parent.top
                 syncView: tableView
+                columnSpacing: 0
                 clip: true
             }
             VerticalHeaderView {
@@ -56,51 +58,50 @@ Rectangle {
                 anchors.top: horizontalHeader.bottom
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
-                columnSpacing: 1
+                columnSpacing: 0
                 rowSpacing: 1
                 boundsBehavior: Flickable.StopAtBounds
                 resizableColumns: true
+                property int minColumnWidth: 48
 
                 columnWidthProvider: function(column) {
                     let w = explicitColumnWidth(column)
-                    if (w >= 0)
+                    if (w >= minColumnWidth)
                         return w;
-                    return implicitColumnWidth(column)
+                    let iw = implicitColumnWidth(column)
+                    return iw > minColumnWidth ? iw : minColumnWidth
                 }
 
                 clip: true
 
                 model: TableModel {
-                    TableModelColumn { display: "checked" }
-                    TableModelColumn { display: "amount" }
-                    TableModelColumn { display: "fruitType" }
-                    TableModelColumn { display: "fruitName" }
-                    TableModelColumn { display: "fruitPrice" }
+                    id: tableModel
+                    TableModelColumn {
+                        display: function(modelIndex) { return tableModel.rows[modelIndex.row].cls }
+                        decoration: function(modelIndex) { return tableModel.rows[modelIndex.row].color }
+                        background: function(modelIndex) { return tableModel.rows[modelIndex.row].background }
+                    }
+                    TableModelColumn {
+                        display: function(modelIndex) { return tableModel.rows[modelIndex.row].x }
+                        background: function(modelIndex) { return tableModel.rows[modelIndex.row].background }
+                    }
+                    TableModelColumn {
+                        display: function(modelIndex) { return tableModel.rows[modelIndex.row].y }
+                        background: function(modelIndex) { return tableModel.rows[modelIndex.row].background }
+                    }
+                    TableModelColumn {
+                        display: function(modelIndex) { return tableModel.rows[modelIndex.row].width }
+                        background: function(modelIndex) { return tableModel.rows[modelIndex.row].background }
+                    }
+                    TableModelColumn {
+                        display: function(modelIndex) { return tableModel.rows[modelIndex.row].height }
+                        background: function(modelIndex) { return tableModel.rows[modelIndex.row].background }
+                    }
 
                     // Each row is one type of fruit that can be ordered
                     rows: [
-                        {
-                            // Each property is one cell/column.
-                            checked: false,
-                            amount: 1,
-                            fruitType: "Apple",
-                            fruitName: "Granny Smith",
-                            fruitPrice: 1.50
-                        },
-                        {
-                            checked: true,
-                            amount: 4,
-                            fruitType: "Orange",
-                            fruitName: "Navel",
-                            fruitPrice: 2.50
-                        },
-                        {
-                            checked: false,
-                            amount: 1,
-                            fruitType: "Banana",
-                            fruitName: "Cavendish",
-                            fruitPrice: 3.50
-                        }
+                        {cls: "dog", x: 125.01, y: 20.50, width: 100.05, height: 1.50, color: "red", background: "#3D3D3D"},
+                        {cls: "cat", x: 125.01, y: 20.50, width: 100.05, height: 1.50, color: "yellow", background: "#5E5E5E"},
                     ]
                 }
                 delegate: DelegateChooser {
@@ -109,22 +110,42 @@ Rectangle {
                         delegate: Rectangle {
                             implicitHeight: 48
                             implicitWidth: 80
+                            color: model.background
+                            RowLayout {
+                                anchors.fill: parent
+                                anchors.margins: 5
+                                Rectangle {
+                                    implicitHeight: 24
+                                    implicitWidth: 24
+                                    color: model.decoration
+                                    radius: 2
+                                    border.width: 1
+                                }
+                                Label {
+                                    text: model.display
+                                    Layout.fillWidth: true
+                                }
+                            }
                         }
                     }
 
-//                    DelegateChoice {
-//                        delegate: SpinBox {
-//                            value: model.display
-//                            onValueModified: model.display = value
-//                        }
-//                    }
+                    //                    DelegateChoice {
+                    //                        delegate: SpinBox {
+                    //                            value: model.display
+                    //                            onValueModified: model.display = value
+                    //                        }
+                    //                    }
                     // 剩下的列
                     DelegateChoice {
-                        delegate: TextField {
-                            text: model.display
-                            selectByMouse: true
+                        delegate: Rectangle{
                             implicitWidth: 48
-                            onAccepted: model.display = text
+                            color: model.background
+                            Label {
+                                anchors.fill: parent
+                                text: model.display
+                                horizontalAlignment: Text.AlignRight
+                                verticalAlignment: Text.AlignVCenter
+                            }
                         }
                     }
                 }
