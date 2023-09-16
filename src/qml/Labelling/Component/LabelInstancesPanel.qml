@@ -4,13 +4,18 @@ import QtQuick.Layouts
 
 import Qt.labs.qmlmodels
 
-//import QuickUI
+import QuickUI
 
 Rectangle {
+    id: labelInstances
     implicitHeight: 200
     implicitWidth: 200
     //    color: QuickColor.Primary
     color: "#3D3D3D"
+
+    readonly property int firstMinColumnWidth: 64
+    readonly property int minColumnWidth: 48
+    property int columnHeight: 48
 
     ColumnLayout {
         anchors.fill: parent
@@ -41,6 +46,28 @@ Rectangle {
                 syncView: tableView
                 columnSpacing: 0
                 clip: true
+
+                delegate: Rectangle {
+                    readonly property real cellPadding: 8
+
+                    implicitWidth: text.implicitWidth + (cellPadding * 2)
+                    implicitHeight: Math.max(control.height, text.implicitHeight + (cellPadding * 2))
+                    color: "#3D3D3D"
+                    border.color: "#e4e4e4"
+
+                    Label {
+                        id: text
+                        text: horizontalHeader.textRole ?
+                                (Array.isArray(horizontalHeader.model) ? modelData[horizontalHeader.textRole]
+                                                                       : model[horizontalHeader.textRole])
+                                : modelData
+                        width: parent.width
+                        height: parent.height
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        color: "#ff26282a"
+                    }
+                }
             }
             VerticalHeaderView {
                 id: verticalHeader
@@ -62,9 +89,9 @@ Rectangle {
                 rowSpacing: 1
                 boundsBehavior: Flickable.StopAtBounds
                 resizableColumns: true
-                property int minColumnWidth: 48
 
                 columnWidthProvider: function(column) {
+                    let minColumnWidth = column === 0 ? labelInstances.firstMinColumnWidth : labelInstances.minColumnWidth
                     let w = explicitColumnWidth(column)
                     if (w >= minColumnWidth)
                         return w;
@@ -109,7 +136,7 @@ Rectangle {
                         column: 0
                         delegate: Rectangle {
                             implicitHeight: 48
-                            implicitWidth: 80
+                            implicitWidth: firstMinColumnWidth
                             color: model.background
                             RowLayout {
                                 anchors.fill: parent
@@ -138,7 +165,7 @@ Rectangle {
                     // 剩下的列
                     DelegateChoice {
                         delegate: Rectangle{
-                            implicitWidth: 48
+                            implicitWidth: minColumnWidth
                             color: model.background
                             Label {
                                 anchors.fill: parent
