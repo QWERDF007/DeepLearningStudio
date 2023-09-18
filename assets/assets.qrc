@@ -45,5 +45,7 @@
         <file alias="right_arrow">icons/right_arrow.svg</file>
         <file alias="zoom_in">icons/zoom_in.svg</file>
         <file alias="zoom_out">icons/zoom_out.svg</file>
+        <file alias="aspect_ratio">icons/aspect_ratio.svg</file>
+        <file alias="crossline">icons/crossline.svg</file>
     </qresource>
 </RCC>
