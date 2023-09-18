@@ -39,6 +39,7 @@ Rectangle {
                 horizontalAlignment: Text.AlignLeft
             }
             QuickToolButton {
+                padding: 4
                 backgroundVisible: hovered
                 ToolTip.visible: hovered
                 ToolTip.delay: 500
@@ -56,6 +57,7 @@ Rectangle {
                 Layout.fillWidth: true
             }
             QuickToolButton {
+                padding: 4
                 backgroundVisible: hovered
                 ToolTip.visible: hovered
                 ToolTip.delay: 500
@@ -65,6 +67,18 @@ Rectangle {
                 icon.width: 24
                 onPressed: {
                     imageSizeSlider.increase()
+                }
+            }
+            QuickToolButton {
+                padding: 4
+                backgroundVisible: hovered
+                ToolTip.visible: hovered
+                ToolTip.delay: 500
+                ToolTip.text: qsTr("将图像与屏幕相适应")
+                icon.source: "/icons/aspect_ratio"
+                icon.height: 24
+                icon.width: 24
+                onPressed: {
                 }
             }
         }
