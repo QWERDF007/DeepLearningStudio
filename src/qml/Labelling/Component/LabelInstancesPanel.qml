@@ -10,8 +10,7 @@ Rectangle {
     id: labelInstances
     implicitHeight: 200
     implicitWidth: 200
-    //    color: QuickColor.Primary
-    color: "#3D3D3D"
+    color: QuickColor.Primary
 
     readonly property int firstMinColumnWidth: 72
     readonly property int minColumnWidth: 48
