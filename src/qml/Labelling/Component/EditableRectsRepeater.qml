@@ -7,6 +7,10 @@ Repeater {
     property real xOffset: 0
     property real yOffset: 0
     property real scaleValue: 1.0
+    property real imageSourceWidth: 0
+    property real imageSourceHeight: 0
+    property real imagePaintedWidth: 0
+    property real imagePaintedHeight: 0
 
     delegate: Rectangle {
         id: _editableRect
@@ -21,28 +25,46 @@ Repeater {
         property bool rectDragEnable: false
 
         onXChanged: {
-//            model.x = _editableRect.x - xOffset
-//            model.x = Math.max(0, model.x)
-//            model.x = Math.min(model.x, Math.abs(imagePaintedWidth - _editableRect.width))
+            if (rectDragEnable) {
+                var left = Math.max(0, (_editableRect.x - xOffset) / scaleValue )
+                var right = Math.max(0, imageSourceWidth)
+                model.x = Math.min(left, right)
+            }
         }
 
         onYChanged: {
-//            model.y = _editableRect.y - yOffset
-//            model.y = Math.max(0, model.y)
-//            model.y = Math.min(model.y, Math.abs(imagePaintedHeight - _editableRect.height))
+            if (rectDragEnable) {
+                var top = Math.max(0, (_editableRect.y - yOffset) / scaleValue)
+                var bottom = Math.max(0, imageSourceHeight)
+                model.y = Math.min(top, bottom)
+            }
         }
 
         MouseArea {
             id: _rectMouseArea
-            anchors.fill: parent
-            acceptedButtons: Qt.LeftButton | Qt.RightButton
+//            anchors.fill: parent
+            width: parent.width + 5
+            height: parent.height + 5
+            anchors.centerIn: parent.Center
+            hoverEnabled: true
+            acceptedButtons: Qt.AllButtons
             drag.target: _editableRect.rectDragEnable ? _editableRect : null
             drag.axis: Drag.XAndYAxis
+
+            drag.minimumX: xOffset
+            drag.maximumX: xOffset + imagePaintedWidth - _editableRect.width
+            drag.minimumY: yOffset
+            drag.maximumY: yOffset + imagePaintedHeight - _editableRect.height
+
             onPressed: function(mouse) {
                 console.log("press on rect")
                 if (mouse.button === Qt.LeftButton) {
                     setRectDragEnable(true)
-                } else {
+                    setCursorShape(Qt.CrossCursor)
+                } else if (mouse.button === Qt.MiddleButton){
+//                    _rectMouseArea.cursorShape = Qt.ClosedHandCursor
+                    mouse.accepted = false
+                } else if (mouse.button === Qt.RightButton) {
                     mouse.accepted = false
                 }
             }
@@ -51,22 +73,23 @@ Repeater {
                 console.log("release on rect")
                 if (_editableRect.rectDragEnable) {
                     setRectDragEnable(false)
+                    setCursorShape(Qt.ArrowCursor)
                 }
+//                if (_rectMouseArea.cursorShape != Qt.ArrowCursor) {
+//                    _rectMouseArea.cursorShape = Qt.ArrowCursor
+//                }
             }
 
             onPositionChanged: function(mouse) {
-//                    model.x = mouse.x
-//                    model.y = mouse.y
+
             }
         }
         function setRectDragEnable(enable) {
-            console.log("setRectDragEnable(", enable, ")")
             _editableRect.rectDragEnable = enable
-            if (enable) {
-                _rectMouseArea.cursorShape = Qt.CrossCursor
-            } else {
-                _rectMouseArea.cursorShape = Qt.ArrowCursor
-            }
+        }
+
+        function setCursorShape(cursorShape) {
+            _rectMouseArea.cursorShape = cursorShape
         }
     }
 
