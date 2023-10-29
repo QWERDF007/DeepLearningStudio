@@ -17,33 +17,46 @@ Item {
     property real from: 0.25
     property real to: 2
 
-    property var scaleOrigin: mapFromItem(image, 0, 0)
     property var scaledImagePos: mapFromItem(image, 0, 0)
-    property real scaleValue: 1.0
+    property real imageSourceScale: image.source !== "" && image.status === Image.Ready ?
+                                        Math.min(labelRegion.height / image.sourceSize.height, labelRegion.width / image.sourceSize.width) :
+                                        1.0
+
+    property bool isFitInView: true
 
     Image {
         id: image
-        property real minimalEdge: Math.min(parent.width, parent.height)
-        property real xOffset: Math.abs(width - paintedWidth) / 2 * scaleValue
-        property real yOffset: Math.abs(height - paintedHeight) / 2 * scaleValue
+        property real xOffset: Math.abs(width - paintedWidth) / 2 * scale
+        property real yOffset: Math.abs(height - paintedHeight) / 2 * scale
 
-        width: parent.width
-        height: parent.height
         source: "file:///D:/Datasets/Photos/raw/F3f6LKvW4AAgnDi.jpg"
-        sourceSize.width: minimalEdge
-        sourceSize.height: minimalEdge
         fillMode: Image.PreserveAspectFit
+
         onXChanged: {
             updateImagePos()
         }
         onYChanged: {
             updateImagePos()
         }
-        transform: Scale {
-            origin.x: scaleOrigin.x
-            origin.y: scaleOrigin.y
-            xScale: scaleValue
-            yScale: scaleValue
+    }
+
+//    Component.onCompleted: {
+//        if (image.status === Image.Ready) {
+//            imageFitInView()
+//        }
+//    }
+
+
+    onWidthChanged: {
+        console.log("labelRegion", labelRegion.width, labelRegion.height)
+        if (isFitInView) {
+            imageFitInView()
+        }
+    }
+    onHeightChanged: {
+        console.log("labelRegion", labelRegion.width, labelRegion.height)
+        if (isFitInView) {
+            imageFitInView()
         }
     }
 
@@ -107,15 +120,21 @@ Item {
     EditableRectsRepeater {
         id: editableRects
         model: rectsModel
+        imageSourceWidth: image.sourceSize.width
+        imageSourceHeight: image.sourceSize.height
+        imagePaintedWidth: image.paintedWidth * image.scale
+        imagePaintedHeight: image.paintedHeight * image.scale
         xOffset: labelRegion.scaledImagePos.x + image.xOffset
         yOffset: labelRegion.scaledImagePos.y + image.yOffset
-        scaleValue: labelRegion.scaleValue
+        scaleValue: image.scale
     }
 
 
     Keys.onPressed: function (event) {
         if (event.key === Qt.Key_Control) {
             _mouseArea.cursorShape = Qt.OpenHandCursor
+        } else if (event.key === Qt.Key_Space) {
+            imageFitInView()
         }
     }
 
@@ -144,13 +163,13 @@ Item {
      */
     function scaleImageByWheel(wheel) {
         // 鼠标相对于缩放前图像的位置
-        scaleOrigin = mapToItem(image, wheel.x, wheel.y)
+        var scaleOrigin = mapToItem(image, wheel.x, wheel.y)
         // 缩放
         var step = wheel.angleDelta.y / 120 * labelRegion.stepSize
-        scaleValue = Math.min(Math.max(0.25, scaleValue + step), 32)
+        image.scale = Math.min(Math.max(0.25 * labelRegion.imageSourceScale, image.scale + step), 32 * labelRegion.imageSourceScale)
         // 鼠标位置相对于缩放后图像的位置
         var pos = mapFromItem(image, scaleOrigin)
-        //按照差值移动一下图，使得图看起来不动
+        //按照差值移动一下图，使得图看起来在鼠标位置缩放
         image.x -= pos.x - wheel.x
         image.y -= pos.y - wheel.y
     }
@@ -190,12 +209,12 @@ Item {
      * @param mouse
      */
     function addRect(mouse) {
-        var left = (drawingRect.x - (scaledImagePos.x + image.xOffset)) / scaleValue
-        var right = left + drawingRect.width / scaleValue
+        var left = (drawingRect.x - (scaledImagePos.x + image.xOffset)) / image.scale
+        var right = left + drawingRect.width / image.scale
         left = Math.max(0, left)
         right = Math.min(right, image.paintedWidth)
-        var top = (drawingRect.y - (scaledImagePos.y + image.yOffset)) / scaleValue
-        var bottom = top + drawingRect.height / scaleValue
+        var top = (drawingRect.y - (scaledImagePos.y + image.yOffset)) / image.scale
+        var bottom = top + drawingRect.height / image.scale
         top = Math.max(0, top)
         bottom = Math.min(bottom, image.paintedHeight)
         var x = left
@@ -217,5 +236,22 @@ Item {
                               })
         }
         labelRegion.drawing = false
+    }
+
+    function imageFitInView() {
+        labelRegion.imageSourceScale = Math.min(labelRegion.height / image.sourceSize.height, labelRegion.width / image.sourceSize.width)
+        console.log("imageFitInView image", image.sourceSize, image.scale, labelRegion.imageSourceScale)
+        console.log("imageFitInView labelRegion", labelRegion.width, labelRegion.height)
+        var scaleOrigin = mapToItem(image, 0, 0)
+        image.scale = labelRegion.imageSourceScale
+        var dx = (labelRegion.width - image.sourceSize.width * image.scale) / 2
+        var dy = (labelRegion.height - image.sourceSize.height * image.scale) / 2
+        var pos = mapFromItem(image, scaleOrigin)
+        // 按照差值移动一下图，使得图看起来在(0,0)处缩放
+        image.x -= pos.x
+        image.y -= pos.y
+        // 移动到窗口中央
+        image.x -= scaledImagePos.x - dx
+        image.y -= scaledImagePos.y - dy
     }
 }
