@@ -23,7 +23,28 @@ Rectangle {
             }
 
             QuickSwitch {
-                implicitHeight: 24
+                padding: 0
+                implicitHeight: 20
+                ToolTip.visible: hovered
+                ToolTip.delay: 500
+                ToolTip.text: checked ? qsTr("显示标注实例") : qsTr("隐藏标注实例")
+            }
+            Item {
+                Layout.fillWidth: true
+            }
+
+            QuickToolButton {
+                Layout.alignment: Qt.AlignRight
+                padding: 4
+                backgroundVisible: hovered
+                ToolTip.visible: hovered
+                ToolTip.delay: 500
+                ToolTip.text: qsTr("将图像与屏幕相适应")
+                icon.source: "/icons/aspect_ratio"
+                icon.height: 24
+                icon.width: 24
+                onPressed: {
+                }
             }
         }
 
@@ -67,18 +88,6 @@ Rectangle {
                 icon.width: 24
                 onPressed: {
                     imageSizeSlider.increase()
-                }
-            }
-            QuickToolButton {
-                padding: 4
-                backgroundVisible: hovered
-                ToolTip.visible: hovered
-                ToolTip.delay: 500
-                ToolTip.text: qsTr("将图像与屏幕相适应")
-                icon.source: "/icons/aspect_ratio"
-                icon.height: 24
-                icon.width: 24
-                onPressed: {
                 }
             }
         }
