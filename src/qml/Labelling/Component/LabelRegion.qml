@@ -97,37 +97,6 @@ Item {
         }
     }
 
-    function scaleImageByWheel(wheel) {
-        // 鼠标相对于缩放前图像的位置
-        scaleOrigin = mapToItem(image, wheel.x, wheel.y)
-        // 缩放
-        var step = wheel.angleDelta.y / 120 * labelRegion.stepSize
-        scaleValue = Math.min(Math.max(0.25, scaleValue + step), 32)
-        // 鼠标位置相对于缩放后图像的位置
-        var pos = mapFromItem(image, scaleOrigin)
-        //按照差值移动一下图，使得图看起来不动
-        image.x -= pos.x - wheel.x
-        image.y -= pos.y - wheel.y
-    }
-
-    function startDrawingRect(mouse) {
-        startX = mouse.x
-        startY = mouse.y
-        drawingRect.width = 0
-        drawingRect.height = 0
-        drawing = true
-    }
-
-    function updateDrawingRectByMouse(mouse) {
-        drawingRect.width = Math.abs(mouse.x - startX)
-        drawingRect.height = Math.abs(mouse.y - startY)
-        drawingRect.x = Math.min(mouse.x, startX)
-        drawingRect.y = Math.min(mouse.y, startY)
-    }
-
-    function updateImagePos() {
-        scaledImagePos = mapFromItem(image, 0, 0)
-    }
 
     ListModel {
         id: rectsModel
@@ -143,14 +112,6 @@ Item {
         scaleValue: labelRegion.scaleValue
     }
 
-    function setImageDragEnable(enable) {
-        labelRegion.imageDragEnable = enable
-        if (enable) {
-            _mouseArea.cursorShape = Qt.ClosedHandCursor
-        } else {
-            _mouseArea.cursorShape = Qt.ArrowCursor
-        }
-    }
 
     Keys.onPressed: function (event) {
         if (event.key === Qt.Key_Control) {
@@ -163,12 +124,84 @@ Item {
             _mouseArea.cursorShape = Qt.ArrowCursor
         }
     }
+    
+    /**
+     * @brief 设置图片拖拽和鼠标样式
+     * @param enable
+     */
+    function setImageDragEnable(enable) {
+        labelRegion.imageDragEnable = enable
+        if (enable) {
+            _mouseArea.cursorShape = Qt.ClosedHandCursor
+        } else {
+            _mouseArea.cursorShape = Qt.ArrowCursor
+        }
+    }
 
+    /**
+     * @brief 鼠标滚轮缩放图片, 更新图片位置
+     * @param wheel
+     */
+    function scaleImageByWheel(wheel) {
+        // 鼠标相对于缩放前图像的位置
+        scaleOrigin = mapToItem(image, wheel.x, wheel.y)
+        // 缩放
+        var step = wheel.angleDelta.y / 120 * labelRegion.stepSize
+        scaleValue = Math.min(Math.max(0.25, scaleValue + step), 32)
+        // 鼠标位置相对于缩放后图像的位置
+        var pos = mapFromItem(image, scaleOrigin)
+        //按照差值移动一下图，使得图看起来不动
+        image.x -= pos.x - wheel.x
+        image.y -= pos.y - wheel.y
+    }
+
+    /**
+     * @brief 开始绘制矩形, 记录起始位置, 重置宽高避免上一次矩形遗留
+     * @param mouse
+     */
+    function startDrawingRect(mouse) {
+        startX = mouse.x
+        startY = mouse.y
+        drawingRect.width = 0
+        drawingRect.height = 0
+        drawing = true
+    }
+
+    /**
+     * @brief 更新绘制的矩形, 结束绘制
+     * @param mouse
+     */
+    function updateDrawingRectByMouse(mouse) {
+        drawingRect.width = Math.abs(mouse.x - startX)
+        drawingRect.height = Math.abs(mouse.y - startY)
+        drawingRect.x = Math.min(mouse.x, startX)
+        drawingRect.y = Math.min(mouse.y, startY)
+    }
+
+    /**
+     * @brief 更新缩放后的图像起始点
+     */
+    function updateImagePos() {
+        scaledImagePos = mapFromItem(image, 0, 0)
+    }
+
+    /**
+     * @brief 添加一个矩形, 矩形被限制在图像区域内
+     * @param mouse
+     */
     function addRect(mouse) {
-        var x = (drawingRect.x - (scaledImagePos.x + image.xOffset)) / scaleValue
-        var y = (drawingRect.y - (scaledImagePos.y + image.yOffset)) / scaleValue
-        var width = drawingRect.width / scaleValue
-        var height = drawingRect.height / scaleValue
+        var left = (drawingRect.x - (scaledImagePos.x + image.xOffset)) / scaleValue
+        var right = left + drawingRect.width / scaleValue
+        left = Math.max(0, left)
+        right = Math.min(right, image.paintedWidth)
+        var top = (drawingRect.y - (scaledImagePos.y + image.yOffset)) / scaleValue
+        var bottom = top + drawingRect.height / scaleValue
+        top = Math.max(0, top)
+        bottom = Math.min(bottom, image.paintedHeight)
+        var x = left
+        var y = top
+        var width = right - left
+        var height = bottom - top
 
         console.log("rect", x, y, width, height)
 
