@@ -3,18 +3,17 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Repeater {
-    id: _editableRects
+    id: editableRects
     property real xOffset: 0
     property real yOffset: 0
-    property real imagePaintedWidth: 0
-    property real imagePaintedHeight: 0
+    property real scaleValue: 1.0
 
     delegate: Rectangle {
         id: _editableRect
-        x: model.x + xOffset
-        y: model.y + yOffset
-        width: model.width
-        height: model.height
+        x: model.x * scaleValue + xOffset
+        y: model.y * scaleValue + yOffset
+        width: model.width * scaleValue
+        height: model.height * scaleValue
         color: "transparent"
         border.color:  model.color
         border.width: 1
@@ -22,15 +21,15 @@ Repeater {
         property bool rectDragEnable: false
 
         onXChanged: {
-            model.x = _editableRect.x - xOffset
-            model.x = Math.max(0, model.x)
-            model.x = Math.min(model.x, Math.abs(imagePaintedWidth - _editableRect.width))
+//            model.x = _editableRect.x - xOffset
+//            model.x = Math.max(0, model.x)
+//            model.x = Math.min(model.x, Math.abs(imagePaintedWidth - _editableRect.width))
         }
 
         onYChanged: {
-            model.y = _editableRect.y - yOffset
-            model.y = Math.max(0, model.y)
-            model.y = Math.min(model.y, Math.abs(imagePaintedHeight - _editableRect.height))
+//            model.y = _editableRect.y - yOffset
+//            model.y = Math.max(0, model.y)
+//            model.y = Math.min(model.y, Math.abs(imagePaintedHeight - _editableRect.height))
         }
 
         MouseArea {
