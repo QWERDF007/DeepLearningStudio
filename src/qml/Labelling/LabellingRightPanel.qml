@@ -21,9 +21,14 @@ Item {
         LabelInstancesPanel {
             SplitView.fillHeight: true
             SplitView.fillWidth: true
-            SplitView.minimumHeight: 96
+            SplitView.minimumHeight: 200
         }
         LabelInstanceEditorPanel {
+            SplitView.fillWidth: true
+            SplitView.minimumHeight: 96
+            implicitHeight: 200
+        }
+        ImageFileListPanel {
             SplitView.fillWidth: true
             SplitView.minimumHeight: 96
             implicitHeight: 200
