@@ -4,8 +4,9 @@ import QtQuick.Layouts
 //import QtQuick.Window
 
 Item {
-    property alias headerText: header.text
-    property alias headerFont: header.font
+    property alias headerText: headerLabel.text
+//    property alias headerFont: headerLabel.font
+    property alias headerPixelSize: headerLabel.font.pixelSize
     property alias headerHeight: layout_header.height
     property bool expand: true
     property bool init: true // 优化初始化折叠显示
@@ -39,10 +40,11 @@ Item {
                 }
             }
             Label {
-                id: header
+                id: headerLabel
                 text: qsTr("Title")
                 Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
+                font.pixelSize: 16
             }
         }
     }
