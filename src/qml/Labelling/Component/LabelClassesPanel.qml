@@ -9,13 +9,34 @@ Rectangle {
     height: 200
     color: QuickColor.Primary
 
+    QuickToolButton {
+        anchors.top: labelClassesExpander.top
+        anchors.right: labelClassesExpander.right
+        anchors.topMargin: 3
+        anchors.rightMargin: 8
+        padding: 4
+        backgroundVisible: hovered
+        ToolTip.visible: hovered
+        ToolTip.delay: 500
+        ToolTip.text: qsTr("添加数据集")
+        icon.source: "/icons/add"
+        icon.height: 24
+        icon.width: 24
+
+        onClicked: {
+            console.log("添加标签类别")
+        }
+    }
+
     Expander {
+        id: labelClassesExpander
         anchors.fill: parent
         anchors.leftMargin: 10
         anchors.rightMargin: 0
         anchors.bottomMargin: 10
         headerText: "标签类别:"
-        headerFont.pointSize: 12
+        headerHeight: 36
+        headerPixelSize: 16
 
         content: ListView {
             id: labelClassesListView

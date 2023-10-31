@@ -74,7 +74,7 @@ Rectangle {
         anchors.rightMargin: 0
         anchors.bottomMargin: 10
         headerText: "图像:"
-        headerFont.pointSize: 12
+        headerPixelSize: 16
 
         content: ScrollView {
             id: scrollview

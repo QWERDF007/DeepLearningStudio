@@ -24,6 +24,7 @@ Rectangle {
             Label {
                 text: qsTr("已选择:")
                 Layout.fillWidth: true
+                font.pixelSize: 16
             }
             QuickToolButton {
                 backgroundVisible: true

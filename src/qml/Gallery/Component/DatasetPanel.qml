@@ -9,6 +9,50 @@ Rectangle {
     height: 200
     color: QuickColor.Primary
 
+    RowLayout {
+        anchors.top: imageInfoExpander.top
+        anchors.right: imageInfoExpander.right
+        anchors.topMargin: 3
+        anchors.rightMargin: 8
+        QuickToolButton {
+            padding: 4
+            backgroundVisible: hovered
+            ToolTip.visible: hovered
+            ToolTip.delay: 500
+            ToolTip.text: qsTr("添加图片")
+            icon.source: "/icons/add_image"
+            icon.height: 24
+            icon.width: 24
+
+            onClicked: {
+                console.log("添加图片")
+            }
+        }
+
+        QuickToolButton {
+            padding: 4
+            backgroundVisible: hovered
+            ToolTip.visible: hovered
+            ToolTip.delay: 500
+            ToolTip.text: qsTr("添加数据集")
+            icon.source: "/icons/add"
+            icon.height: 24
+            icon.width: 24
+
+            onClicked: {
+                console.log("添加数据集")
+                var labeled = getRandomInt(4999)
+                var total  = labeled + getRandomInt(4999)
+                imageInfoListModel.append({text: new Date().toLocaleDateString(), labeled: labeled, total: total})
+            }
+        }
+    }
+
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+    }
+
+
     Expander {
         id: imageInfoExpander
         anchors.fill: parent
@@ -16,7 +60,8 @@ Rectangle {
         anchors.rightMargin: 0
         anchors.bottomMargin: 10
         headerText: "数据集:"
-        headerFont.pointSize: 12
+        headerHeight: 36
+        headerPixelSize: 16
 
         content: ListView {
             id: datasetListView
@@ -35,6 +80,7 @@ Rectangle {
             highlightFollowsCurrentItem: false
 
             model: ListModel {
+                id: imageInfoListModel
                 ListElement { text: "数据集070112312312"; labeled: 10; total: 20 }
                 ListElement { text: "数据集0801412312"; labeled: 0; total: 20 }
                 ListElement { text: "数据集07304412121"; labeled: 10; total: 20 }
@@ -94,9 +140,6 @@ Rectangle {
                             id: datasetNameMouseArea
                             anchors.fill: parent
                             hoverEnabled: true
-                        }
-                        Component.onCompleted: {
-                            console.log("text", model.text, datasetNameLabel.contentWidth, datasetNameLabel.implicitWidth, datasetNameLabel.contentWidth > datasetNameLabel.width)
                         }
                     }
 
