@@ -222,8 +222,6 @@ Item {
         var width = right - left
         var height = bottom - top
 
-        console.log("rect", x, y, width, height)
-
         if (width > 0 && height > 0) {
             console.log("add one rect", x, y, width, height)
             rectsModel.append({
