@@ -52,6 +52,7 @@ Rectangle {
             }
 
             model: ListModel {
+                id: labelClassesModel
                 ListElement { text: "背景"; color: "gray"; shortcut: "0" }
                 ListElement { text: "标签1"; color: "yellow"; shortcut: "1" }
                 ListElement { text: "标签3"; color: "green"; shortcut: "2" }
@@ -97,6 +98,14 @@ Rectangle {
                         color: model.color
                         border.color: "black"
                         border.width: 1
+                        Label {
+                            anchors.fill: parent
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                            text: model.shortcut
+                            font.pixelSize: 16
+                            color: palette.buttonText
+                        }
                     }
 
                     Label {
