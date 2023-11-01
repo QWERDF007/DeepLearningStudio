@@ -18,7 +18,7 @@ Rectangle {
         anchors.margins: 5
         RowLayout {
             Layout.fillWidth: true
-            implicitHeight: _labelInstanceEditor.contentItemHeight
+            height: _labelInstanceEditor.contentItemHeight
             Label {
                 Layout.preferredWidth: 48
                 height: parent.height
@@ -107,8 +107,9 @@ Rectangle {
             }
 
             delegate: RowLayout {
-                implicitWidth: parent.width
-                implicitHeight: _labelInstanceEditor.contentItemHeight
+//                implicitWidth: parent.width
+                width: parent.width
+                height: _labelInstanceEditor.contentItemHeight
 
                 Label {
                     Layout.preferredWidth: 48
