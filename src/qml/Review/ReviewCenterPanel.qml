@@ -3,5 +3,6 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Rectangle {
-    anchors.fill: parent
+    width: 400
+    height: 400
 }
