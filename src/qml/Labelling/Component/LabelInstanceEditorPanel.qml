@@ -11,11 +11,24 @@ Rectangle {
     color: QuickColor.Primary
     clip: true
 
-    property int contentItemHeight: 28
+    property int contentItemHeight: 24
+
+    ListModel {
+        id: classesModel
+        ListElement { text: "类别1"; color: "yellow"; value: 0 }
+        ListElement { text: "类别2"; color: "red"; value: 1 }
+    }
+
 
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 5
+        Label {
+            Layout.fillWidth: true
+            height: parent.height
+            font.pixelSize: 16
+            text: qsTr("编辑所选标签实例:")
+        }
         RowLayout {
             Layout.fillWidth: true
             height: _labelInstanceEditor.contentItemHeight
@@ -25,70 +38,10 @@ Rectangle {
                 font.pixelSize: 16
                 text: qsTr("类别")
             }
-            ComboBox {
-                id: _comboBox
+            LabelClassComboBox {
+                model: classesModel
                 implicitHeight: parent.height
-                topInset: 0
-                bottomInset: 0
                 Layout.fillWidth: true
-                textRole: "text"
-                valueRole: "value"
-                model: ListModel {
-                    id: _classesModel
-                    ListElement { text: "类别1"; color: "yellow"; value: 0 }
-                    ListElement { text: "类别2"; color: "red"; value: 1 }
-                }
-
-                delegate: ItemDelegate {
-                    height: _labelInstanceEditor.contentItemHeight
-                    width: _comboBox.width
-                    contentItem: RowLayout {
-                        anchors.fill: parent
-                        anchors.margins: 5
-                        Rectangle {
-                            implicitHeight: 16
-                            implicitWidth: 16
-                            radius: 3
-                            color: model.color
-                            border.width: 1
-                            border.color: "black"
-                            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                        }
-                        Label {
-                            Layout.fillWidth: true
-                            Layout.fillHeight: true
-                            text: model.text
-                            font.pixelSize: 16
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                    }
-                }
-
-                contentItem: RowLayout {
-                    Rectangle {
-                        implicitHeight: 16
-                        implicitWidth: 16
-                        radius: 3
-                        color: _comboBox.currentIndex !== -1 ? _classesModel.get(_comboBox.currentIndex).color : "transparent"
-                        border.width: 1
-                        border.color: "black"
-                        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                        Layout.leftMargin: 5
-                    }
-                    Label {
-                        Layout.fillWidth: true
-                        //                        Layout.fillHeight: true
-                        text: _comboBox.displayText
-                        font.pixelSize: 16
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
-                    }
-                }
-
-                onActivated: function(index) {
-                    console.log("LabelInstanceEditor comboBox onActivated", index)
-                }
             }
         }
 
@@ -107,7 +60,6 @@ Rectangle {
             }
 
             delegate: RowLayout {
-//                implicitWidth: parent.width
                 width: parent.width
                 height: _labelInstanceEditor.contentItemHeight
 
