@@ -1,55 +1,46 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import dl.studio.theme 1.0
+
+import QuickUI
+import "./Component"
+
 
 Item {
     id: centerItem
-    //    color: Theme.primary
     ColumnLayout {
         anchors.fill: parent
         anchors.leftMargin: 5
-        TrainingTabBar {
-            id: bar
-            height: 80
+        QuickTabBar {
+            id: trainingTabBar
+            implicitHeight: 40
             Layout.fillWidth: true
             spacing: 5
+            highlight: null
 
-            TrainingTabButton {
+            QuickTabButton {
                 text: qsTr("设置")
-                implicitHeight: 40
+                implicitHeight: parent.height
                 antialiasing: true
+                icon.width: 32
+                icon.height: 32
                 icon.source: "/icons/settings_tab"
             }
 
-            TrainingTabButton {
+            QuickTabButton {
                 text: qsTr("结果")
-                implicitHeight: 40
+                implicitHeight: parent.height
                 antialiasing: true
+                icon.width: 32
+                icon.height: 32
                 icon.source: "/icons/results"
             }
         }
-//        RowLayout {
-//            Layout.fillWidth: true
-//            height: 40
-//            spacing: 5
-//            Button {
-//                text: qsTr("设置")
-//                Layout.fillWidth: true
-//                Material.roundedScale: Material.ExtraSmallScale
-//            }
-//            Button {
-//                Layout.fillWidth: true
-//                text: qsTr("结果")
-////                width: parent.width * 0.5
-//                Material.roundedScale: Material.ExtraSmallScale
-//            }
-//        }
 
         StackLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            currentIndex: bar.currentIndex
+            currentIndex: trainingTabBar.currentIndex
             Rectangle {
                 id: settingTab
                 Layout.fillHeight: true
