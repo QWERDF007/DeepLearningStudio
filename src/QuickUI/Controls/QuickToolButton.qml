@@ -17,7 +17,7 @@ ToolButton {
     implicitWidth: implicitContentWidth/* + leftPadding + rightPadding*/
     implicitHeight: implicitContentHeight/* + topPadding + bottomPadding*/
 
-//    padding: 0
+    padding: 4
 
     icon.color: control.palette.brightText
     spacing: 6
