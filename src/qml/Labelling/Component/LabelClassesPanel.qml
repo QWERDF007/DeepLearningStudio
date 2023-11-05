@@ -12,10 +12,10 @@ Rectangle {
     QuickToolButton {
         anchors.top: labelClassesExpander.top
         anchors.right: labelClassesExpander.right
-        anchors.topMargin: 3
-        anchors.rightMargin: 8
+        anchors.topMargin: 5
+        anchors.rightMargin: 10
         padding: 4
-        backgroundVisible: hovered
+        backgroundVisible: true
         ToolTip.visible: hovered
         ToolTip.delay: 500
         ToolTip.text: qsTr("添加数据集")

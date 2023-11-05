@@ -11,9 +11,11 @@ ComboBox {
     textRole: "text"
     valueRole: "value"
 
-    property int labelColorRectSize: Math.min(width, height) - 12
+    property int labelColorRectSize: Math.max(Math.min(implicitWidth, implicitHeight) - 8, 16)
     property int labelColorRectRadius: 3
     property int fontPixelSize: 16
+    property alias displayLabelText: displayLabel.text
+    property bool colorVisible: true
 
     // 弹窗的
     delegate: ItemDelegate {
@@ -42,8 +44,10 @@ ComboBox {
         }
     }
 
+    // 显示选中的内容
     contentItem: RowLayout {
         Rectangle {
+            visible: labelClassComboBox.colorVisible
             height: labelColorRectSize
             width: labelColorRectSize
             radius: labelColorRectRadius
@@ -54,15 +58,13 @@ ComboBox {
             Layout.leftMargin: 5
         }
         Label {
+            id: displayLabel
             Layout.fillWidth: true
+            Layout.leftMargin: 5
             text: labelClassComboBox.displayText
             font.pixelSize: fontPixelSize
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
         }
-    }
-
-    onActivated: function(index) {
-        console.log("LabelInstanceEditor comboBox onActivated", index)
     }
 }
