@@ -24,6 +24,11 @@ Repeater {
 
         property bool rectDragEnable: false
 
+        signal cursorShapeChanged(int cursorShape)
+        onCursorShapeChanged: function(cursorShape) {
+            _rectMouseArea.cursorShape = cursorShape
+        }
+
         onXChanged: {
             if (rectDragEnable) {
                 var left = Math.max(0, (_editableRect.x - xOffset) / scaleValue )

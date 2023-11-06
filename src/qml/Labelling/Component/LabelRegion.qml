@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
+import QuickUI
 
 
 Item {
@@ -17,12 +18,19 @@ Item {
     property real from: 0.25
     property real to: 2
 
+    property var itemUnderMouse: null
     property var scaledImagePos: mapFromItem(image, 0, 0)
     property real imageSourceScale: image.source !== "" && image.status === Image.Ready ?
                                         Math.min(labelRegion.height / image.sourceSize.height, labelRegion.width / image.sourceSize.width) :
                                         1.0
 
     property bool isFitInView: true
+
+    onVisibleChanged: {
+        if (visible) {
+            forceActiveFocus()
+        }
+    }
 
     Image {
         id: image
@@ -39,13 +47,6 @@ Item {
             updateImagePos()
         }
     }
-
-//    Component.onCompleted: {
-//        if (image.status === Image.Ready) {
-//            imageFitInView()
-//        }
-//    }
-
 
     onWidthChanged: {
         console.log("labelRegion", labelRegion.width, labelRegion.height)
@@ -73,18 +74,26 @@ Item {
         anchors.fill: parent
         drag.target: labelRegion.imageDragEnable ? image : null
         drag.axis: Drag.XAndYAxis
+        hoverEnabled: true
         acceptedButtons: Qt.AllButtons
+
+        Component.onCompleted: {
+//            QuickTools.setCursor(this, ":/icons/edit")
+        }
 
         onPressed: function (mouse) {
             labelRegion.forceActiveFocus()
+            itemUnderMouse = labelRegion.childAt(mouse.x, mouse.y)
             if (mouse.button === Qt.LeftButton) {
                 if (mouse.modifiers & Qt.ControlModifier) {
                     setImageDragEnable(true)
+                    setCursorShape(Qt.ClosedHandCursor)
                 } else {
                     startDrawingRect(mouse)
                 }
             } else if (mouse.button === Qt.MiddleButton) {
                 setImageDragEnable(true)
+                setCursorShape(Qt.ClosedHandCursor)
             } else if (mouse.button === Qt.RightButton) {
 
             }
@@ -93,6 +102,14 @@ Item {
         onReleased: function (mouse) {
             if (labelRegion.imageDragEnable) {
                 setImageDragEnable(false)
+                if (mouse.modifiers & Qt.ControlModifier) {
+                    setCursorShape(Qt.OpenHandCursor)
+                } else {
+                    setCursorShape(Qt.ArrowCursor)
+                    if (itemUnderMouse) {
+                        itemUnderMouse = null
+                    }
+                }
             } else if (mouse.button === Qt.LeftButton) {
                 addRect(mouse)
             }
@@ -131,8 +148,13 @@ Item {
 
 
     Keys.onPressed: function (event) {
+
         if (event.key === Qt.Key_Control) {
-            _mouseArea.cursorShape = Qt.OpenHandCursor
+            itemUnderMouse = labelRegion.childAt(_mouseArea.mouseX, _mouseArea.mouseY)
+            console.log(itemUnderMouse, _mouseArea.mouseX, _mouseArea.mouseY)
+            if (!labelRegion.imageDragEnable) {
+                setCursorShape(Qt.OpenHandCursor)
+            }
         } else if (event.key === Qt.Key_Space) {
             imageFitInView()
         }
@@ -140,20 +162,56 @@ Item {
 
     Keys.onReleased: function (event) {
         if (event.key === Qt.Key_Control) {
-            _mouseArea.cursorShape = Qt.ArrowCursor
+            if (labelRegion.imageDragEnable) {
+                setImageDragEnable(false)
+            }
+            setCursorShape(Qt.ArrowCursor)
+            if (itemUnderMouse) {
+                itemUnderMouse = null
+            }
         }
     }
     
     /**
-     * @brief 设置图片拖拽和鼠标样式
+     * @brief 设置图片拖拽
      * @param enable
      */
     function setImageDragEnable(enable) {
         labelRegion.imageDragEnable = enable
-        if (enable) {
-            _mouseArea.cursorShape = Qt.ClosedHandCursor
-        } else {
-            _mouseArea.cursorShape = Qt.ArrowCursor
+    }
+
+    /**
+     * @brief 设置图片区域的鼠标形状
+     * @param cursorShape
+     */
+    function setCursorShape(cursorShape) {
+        _mouseArea.cursorShape = cursorShape
+        updateItemUnderMouseCursorShape(cursorShape)
+    }
+
+    /**
+     * @brief 获取 obj 的属性并转换为字符串, 包括 function 和 property
+     * @param obj
+     */
+    function objToString (obj) {
+        var str = '';
+        for (var p in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, p)) {
+                str += p + '::' + obj[p] + '\n';
+            }
+        }
+        return str;
+    }
+
+    /**
+     * @brief 设置鼠标位置下的组件的鼠标区域的鼠标形状
+     * @param cursorShape
+     */
+    function updateItemUnderMouseCursorShape(cursorShape) {
+        if (itemUnderMouse && itemUnderMouse.hasOwnProperty("cursorShapeChanged")) {
+            if (itemUnderMouse instanceof Rectangle) {
+                itemUnderMouse.cursorShapeChanged(cursorShape)
+            }
         }
     }
 
