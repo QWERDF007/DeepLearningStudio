@@ -6,8 +6,6 @@ import QuickUI
 
 TabBar {
     id: control
-    height: 40
-    width: 200
 
     property alias highlight: lv.highlight
 

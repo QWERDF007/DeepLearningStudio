@@ -1,13 +1,23 @@
 #include "tools.h"
 
-QuickTools::QuickTools()
+#include <QQuickItem>
+#include <QCursor>
+
+QuickTools* QuickTools::instance_ = nullptr;
+
+QuickTools::QuickTools(QObject *parent)
 {
 
 }
 
-QuickTools::~QuickTools()
-{
 
+QuickTools *QuickTools::getInstance()
+{
+    if (instance_ == nullptr)
+    {
+        instance_ = new QuickTools;
+    }
+    return instance_;
 }
 
 bool QuickTools::isMacos()
@@ -35,4 +45,19 @@ bool QuickTools::isWindows()
 #else
     return false;
 #endif
+}
+
+bool QuickTools::setCursor(QObject *obj, const QString &source)
+{
+    if (obj == nullptr)
+    {
+        return false;
+    }
+    QQuickItem *item = qobject_cast<QQuickItem*>(obj);
+    if (item == nullptr)
+    {
+        return false;
+    }
+    item->setCursor(QCursor(QPixmap(source)));
+    return true;
 }

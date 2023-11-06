@@ -15,8 +15,6 @@ QuickColor *QuickColor::getInstance()
         instance_ = new QuickColor;
     }
     return instance_;
-//    static QuickColor instace;
-//    return &instace;
 }
 
 QuickColor::QuickColor(QObject *parent)
