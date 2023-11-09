@@ -68,7 +68,7 @@ Rectangle {
             }
         }
 
-        TrainingListView {
+        ModelListView {
             model: dlModelList
             Layout.fillWidth: true
             Layout.fillHeight: true
