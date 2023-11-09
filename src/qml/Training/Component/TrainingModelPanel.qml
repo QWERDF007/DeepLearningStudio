@@ -10,6 +10,30 @@ Rectangle {
     height: 600
     color: QuickColor.Primary
 
+    ListModel{
+        id: dlModelList
+        ListElement{
+            modelName: "abababab"
+            modelType: "yolov5"
+        }
+        ListElement{
+            modelName: "acaca"
+            modelType: "yolov8"
+        }
+        ListElement{
+            modelName: "bbbb"
+            modelType: "deeplabv3+"
+        }
+        ListElement{
+            modelName: "ddddd"
+            modelType: "SAM"
+        }
+        ListElement{
+            modelName: "ffff"
+            modelType: "U-net"
+        }
+    }
+
     ColumnLayout {
         anchors.fill: parent
 
@@ -42,72 +66,12 @@ Rectangle {
                     }
                 }
             }
-
-
         }
 
-        ListModel{
-            id: dlModel
-            ListElement{
-                modelName: "abababab"
-                modelType: "yolov5"
-            }
-            ListElement{
-                modelName: "acaca"
-                modelType: "yolov8"
-            }
-            ListElement{
-                modelName: "bbbb"
-                modelType: "deeplabv3+"
-            }
-            ListElement{
-                modelName: "ddddd"
-                modelType: "SAM"
-            }
-            ListElement{
-                modelName: "ffff"
-                modelType: "U-net"
-            }
-        }
-
-        ListView {
-            id: modelListView
-            //        Flickable
-            orientation: ListView.Vertical
-            boundsBehavior: Flickable.StopAtBounds
+        TrainingListView {
+            model: dlModelList
             Layout.fillWidth: true
             Layout.fillHeight: true
-
-            ScrollBar.vertical: ScrollBar {
-                id: scrollbar
-                policy: modelListView.contentHeight > modelListView.height ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
-                width: 8
-            }
-            clip: true
-            //        spacing: 10
-            model: dlModel
-            focus: true
-
-            delegate: ModelItemDelegate {
-                width: modelListView.width - scrollbar.width
-                modelName: model.modelName
-                modelType: model.modelType
-                onClicked: {
-                    modelListView.currentIndex = index
-                }
-            }
-
-
-
-            highlightFollowsCurrentItem: false
-
-            highlight: Rectangle {
-                width: 8
-                height: modelListView.currentItem.contentHeight - modelListView.currentItem.borderWidth * 2
-                z: 2
-                color: QuickColor.HighLight
-                y: modelListView.currentItem.y + modelListView.currentItem.borderWidth * 2
-            }
         }
 
         Button {

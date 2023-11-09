@@ -22,8 +22,8 @@ Item {
                 text: qsTr("设置")
                 implicitHeight: parent.height
                 antialiasing: true
-                icon.width: 32
-                icon.height: 32
+                icon.width: 24
+                icon.height: 24
                 icon.source: "/icons/settings_tab"
             }
 
@@ -31,8 +31,8 @@ Item {
                 text: qsTr("结果")
                 implicitHeight: parent.height
                 antialiasing: true
-                icon.width: 32
-                icon.height: 32
+                icon.width: 24
+                icon.height: 24
                 icon.source: "/icons/results"
             }
         }
