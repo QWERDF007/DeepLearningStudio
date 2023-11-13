@@ -51,7 +51,6 @@ Rectangle {
         id: labelClassesFilterExpander
         anchors.fill: parent
         anchors.leftMargin: 10
-        anchors.rightMargin: 0
         anchors.bottomMargin: 10
         headerText: "标签类别:"
         headerHeight: 36
@@ -59,6 +58,7 @@ Rectangle {
 
         content: ColumnLayout {
             width: parent.width
+            height: parent.height
             RowLayout {
                 Layout.rightMargin: 10
                 Layout.fillWidth: true
@@ -93,7 +93,7 @@ Rectangle {
 
             LabelClassesView {
                 Layout.fillWidth: true
-                implicitHeight: contentItem.childrenRect.height // 高度由子组件决定
+                Layout.fillHeight: true
                 model: labelClassesFilterModel
 
             }
