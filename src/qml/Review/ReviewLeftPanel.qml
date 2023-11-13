@@ -13,13 +13,13 @@ Item {
         anchors.fill: parent
         orientation: Qt.Vertical
         LabelClassesFilterPanel {
-            SplitView.minimumHeight: 160
+            SplitView.minimumHeight: 200
             implicitHeight: 400
             SplitView.fillWidth: true
         }
 
         SelectedInstancesPanel {
-            SplitView.minimumHeight: 160
+            SplitView.minimumHeight: 200
             SplitView.fillWidth: true
         }
     }

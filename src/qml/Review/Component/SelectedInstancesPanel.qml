@@ -30,7 +30,6 @@ Rectangle {
         anchors.top: labelClassesFilterExpander.top
         anchors.right: labelClassesFilterExpander.right
         anchors.topMargin: 5
-        anchors.rightMargin: 10
         icon.source: "/icons/close"
         icon.height: 24
         icon.width: 24
@@ -58,7 +57,7 @@ Rectangle {
         id: labelClassesFilterExpander
         anchors.fill: parent
         anchors.leftMargin: 10
-        anchors.rightMargin: 0
+        anchors.rightMargin: 10
         anchors.bottomMargin: 10
         headerText: "标签类别:"
         headerPixelSize: 16
