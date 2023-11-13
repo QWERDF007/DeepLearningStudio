@@ -37,10 +37,6 @@ ListView {
         RowLayout {
             id: row
             anchors.fill: parent
-            anchors.leftMargin: 0
-            anchors.rightMargin: 5
-            anchors.topMargin: 0
-            anchors.bottomMargin: 0
             spacing: 3
 
             Rectangle {
@@ -82,7 +78,7 @@ ListView {
                 }
 
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                Layout.rightMargin: 10
+                Layout.rightMargin: 15
                 onClicked: {
                     console.log("编辑标签", model.text)
                 }
@@ -105,7 +101,6 @@ ListView {
 
             anchors.top: parent.top
             anchors.right: parent.right
-            anchors.topMargin: 0
             anchors.rightMargin: 2
             onClicked: {
                 console.log("删除标签", model.text)

@@ -45,7 +45,6 @@ Rectangle {
         id: labelClassesExpander
         anchors.fill: parent
         anchors.leftMargin: 10
-        anchors.rightMargin: 0
         anchors.bottomMargin: 10
         headerText: "标签类别:"
         headerHeight: 36

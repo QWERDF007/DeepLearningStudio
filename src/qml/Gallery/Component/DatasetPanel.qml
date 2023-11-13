@@ -57,7 +57,6 @@ Rectangle {
         id: imageInfoExpander
         anchors.fill: parent
         anchors.leftMargin: 10
-        anchors.rightMargin: 0
         anchors.bottomMargin: 10
         headerText: "数据集:"
         headerHeight: 36
